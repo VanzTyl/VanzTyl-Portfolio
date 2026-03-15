@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VanzTyl — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #6EE7B7;
+      --accent2: #34D399;
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #1a1a24;
+      --border: #1e1e2e;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --tag-bg: #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ── Selection ── */
+    ::selection { background: rgba(110,231,183,.2); color: var(--accent); }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: .4;
+    }
+
+    /* ── Glow blobs ── */
+    .glow-blob {
+      position: fixed; border-radius: 50%;
+      filter: blur(120px); pointer-events: none; z-index: 0;
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(110,231,183,.08);
+      background: rgba(10,10,15,.85);
+    }
+
+    /* ── Hero ── */
+    .hero-section { min-height: 100vh; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(110,231,183,.08);
+      border: 1px solid rgba(110,231,183,.2);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 12px; font-weight: 500; color: var(--accent);
+      letter-spacing: .05em;
+    }
+    .hero-badge span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.8)} }
+
+    .status-dot { width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse2 2s infinite; }
+    @keyframes pulse2 { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)} 70%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
+
+    .gradient-name {
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 60%, #34D399 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cta-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #0a0a0f;
+      font-weight: 700; font-size: 13px; letter-spacing: .04em;
+      padding: 12px 24px; border-radius: 8px;
+      transition: all .2s; cursor: pointer; border: none; text-decoration: none;
+    }
+    .cta-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 30px rgba(110,231,183,.3); }
+
+    .cta-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text);
+      font-weight: 500; font-size: 13px; letter-spacing: .04em;
+      padding: 12px 24px; border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all .2s; cursor: pointer; text-decoration: none;
+    }
+    .cta-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: border-color .2s;
+    }
+    .stat-card:hover { border-color: rgba(110,231,183,.3); }
+
+    /* ── PGR-style Tab Bar ── */
+    .tab-container { position: relative; z-index: 1; }
+
+    .tab-bar {
+      position: relative;
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .tab-btn {
+      position: relative;
+      padding: 16px 28px;
+      font-size: 13px; font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border: none; background: none;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: color .3s;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); }
+
+    /* PGR sliding indicator */
+    .tab-indicator {
+      position: absolute;
+      bottom: -1px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transition: left .4s cubic-bezier(.4,0,.2,1), width .4s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(110,231,183,.4);
+    }
+
+    /* PGR-style top glow on active tab */
+    .tab-btn.active::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: .6;
+    }
+
+    /* Tab content panels */
+    .tab-panel {
+      display: none;
+      animation: fadeSlideIn .35s cubic-bezier(.4,0,.2,1);
+    }
+    .tab-panel.active { display: block; }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Cards ── */
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all .25s;
+      cursor: default;
+    }
+    .project-card:hover {
+      border-color: rgba(110,231,183,.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(110,231,183,.08);
+    }
+    .project-card .tag {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 500;
+      background: rgba(110,231,183,.08);
+      border: 1px solid rgba(110,231,183,.15);
+      color: var(--accent);
+      margin: 2px 2px;
+    }
+    .project-card .tag.lang {
+      background: rgba(99,102,241,.08);
+      border-color: rgba(99,102,241,.2);
+      color: #a5b4fc;
+    }
+    .project-card .tag.type {
+      background: rgba(249,115,22,.08);
+      border-color: rgba(249,115,22,.2);
+      color: #fdba74;
+    }
+
+    /* ── Tag Filter ── */
+    .filter-tag {
+      padding: 6px 16px; border-radius: 999px;
+      font-size: 12px; font-weight: 500;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .filter-tag:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-tag.active {
+      background: rgba(110,231,183,.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── Education timeline ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: all .2s;
+    }
+    .edu-card:hover { border-left-color: var(--accent2); box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+
+    /* ── Resume ── */
+    .resume-section-title {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .resume-item {
+      border-left: 1px solid var(--border);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .resume-item::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 6px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .skill-bar-wrap { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .skill-bar {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      box-shadow: 0 0 8px rgba(110,231,183,.4);
+    }
+
+    /* ── Email form ── */
+    .email-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .email-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(110,231,183,.1);
+    }
+    .email-input::placeholder { color: var(--muted); }
+    textarea.email-input { resize: vertical; min-height: 120px; }
+
+    /* ── Social icons ── */
+    .social-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      transition: all .2s;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(110,231,183,.06);
+    }
+
+    /* ── Section heading ── */
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    /* ── Responsive tab scroll ── */
+    .tab-bar-scroll { overflow-x: auto; scrollbar-width: none; }
+    .tab-bar-scroll::-webkit-scrollbar { display: none; }
+
+    /* ── Avatar placeholder ── */
+    .avatar-ring {
+      width: 100px; height: 100px; border-radius: 50%;
+      border: 2px solid rgba(110,231,183,.3);
+      background: linear-gradient(135deg, #1a1a24 0%, #111118 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 800; color: var(--accent);
+      position: relative;
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute; inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(110,231,183,.12);
+    }
+
+    /* ── Availability badge ── */
+    .avail-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; color: #22c55e;
+      background: rgba(34,197,94,.08);
+      border: 1px solid rgba(34,197,94,.2);
+      border-radius: 999px;
+      padding: 3px 12px;
+    }
+
+    /* ── Hidden project cards ── */
+    .project-card[data-hidden="true"] { display: none; }
+
+    /* ── Project card clickable ── */
+    .project-card { cursor: pointer; }
+
+    /* ── Nav tabs ── */
+    .nav-tab-group {
+      display: flex; align-items: center; gap: 2px;
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
+    .nav-tab-btn {
+      position: relative;
+      padding: 6px 16px; border-radius: 6px;
+      font-size: 12px; font-weight: 500; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      transition: color .2s, background .2s;
+    }
+    .nav-tab-btn:hover { color: var(--text); background: rgba(255,255,255,.04); }
+    .nav-tab-btn.active {
+      color: var(--accent);
+      background: rgba(110,231,183,.08);
+    }
+    .nav-tab-btn.active::after {
+      content: '';
+      position: absolute; bottom: 0; left: 15%; right: 15%; height: 1px;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+    .nav-scroll-up-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 20px; border-radius: 999px;
+      font-size: 12px; font-weight: 600; letter-spacing: .05em;
+      color: var(--accent);
+      background: rgba(110,231,183,.08);
+      border: 1px solid rgba(110,231,183,.2);
+      cursor: pointer; transition: all .2s;
+    }
+    .nav-scroll-up-btn:hover { background: rgba(110,231,183,.15); transform: translateY(-1px); }
+    .nav-center-slot { transition: opacity .3s, transform .3s; }
+    .nav-center-slot.hidden { opacity: 0; pointer-events: none; transform: translateY(-4px); }
+    .nav-center-slot.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+    /* ── Education Zigzag Timeline ── */
+    .edu-timeline { position: relative; padding: 20px 0; }
+    .edu-timeline-line {
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      transform: translateX(-50%);
+      opacity: .25;
+    }
+    .edu-zig-item {
+      display: flex; align-items: flex-start; gap: 24px;
+      margin-bottom: 48px; position: relative;
+    }
+    .edu-zig-item.from-left { flex-direction: row; }
+    .edu-zig-item.from-right { flex-direction: row-reverse; }
+    .edu-zig-card {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 26px;
+      position: relative;
+      opacity: 0;
+      transition: opacity .6s ease, transform .6s cubic-bezier(.34,1.2,.64,1), border-color .2s;
+    }
+    .edu-zig-card:hover { border-color: rgba(110,231,183,.3); box-shadow: 0 8px 32px rgba(0,0,0,.4); }
+    .edu-zig-item.from-left .edu-zig-card { transform: translateX(-50px); }
+    .edu-zig-item.from-right .edu-zig-card { transform: translateX(50px); }
+    .edu-zig-item.from-left .edu-zig-card.in-view { opacity: 1; transform: translateX(0); }
+    .edu-zig-item.from-right .edu-zig-card.in-view { opacity: 1; transform: translateX(0); }
+    .edu-zig-node {
+      flex-shrink: 0; width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800;
+      border: 2px solid var(--border);
+      background: var(--surface2);
+      position: relative; z-index: 2;
+      margin-top: 16px;
+      opacity: 0; transform: scale(.5);
+      transition: opacity .4s ease .2s, transform .4s cubic-bezier(.34,1.4,.64,1) .2s;
+    }
+    .edu-zig-item.from-left .edu-zig-node.in-view,
+    .edu-zig-item.from-right .edu-zig-node.in-view { opacity: 1; transform: scale(1); }
+    .edu-zig-node::after {
+      content: '';
+      position: absolute; inset: -5px; border-radius: 50%;
+      border: 1px solid transparent;
+      transition: border-color .3s;
+    }
+    .edu-zig-card:hover ~ .edu-zig-node::after,
+    .edu-zig-node:hover::after { border-color: rgba(110,231,183,.4); }
+    .edu-year-badge {
+      display: inline-flex; align-items: center;
+      font-size: 11px; font-weight: 600; letter-spacing: .07em;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 2px 10px; margin-bottom: 10px;
+    }
+
+    /* ── Project Modal ── */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s cubic-bezier(.4,0,.2,1);
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%; max-width: 680px;
+      max-height: 88vh; overflow-y: auto;
+      transform: scale(.94) translateY(16px);
+      transition: transform .35s cubic-bezier(.34,1.2,.64,1), opacity .3s;
+      opacity: 0;
+      scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    }
+    .modal-backdrop.open .modal-box { transform: scale(1) translateY(0); opacity: 1; }
+    .modal-img-hero {
+      width: 100%; height: 200px; border-radius: 16px 16px 0 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px; position: relative; overflow: hidden;
+    }
+    .modal-img-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, var(--surface));
+    }
+    .modal-inner { padding: 0 28px 28px; }
+    .modal-tab-bar {
+      display: flex; border-bottom: 1px solid var(--border);
+      margin: 0 -28px 20px; padding: 0 28px;
+      position: relative;
+    }
+    .modal-tab-btn {
+      padding: 12px 20px; font-size: 12px; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; transition: color .2s; position: relative;
+    }
+    .modal-tab-btn:hover { color: var(--text); }
+    .modal-tab-btn.active { color: var(--accent); }
+    .modal-tab-btn.active::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .modal-panel { display: none; animation: fadeSlideIn .25s ease; }
+    .modal-panel.active { display: block; }
+    .like-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 18px; border-radius: 999px;
+      font-size: 13px; font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface2); color: var(--muted);
+      cursor: pointer; transition: all .2s;
+    }
+    .like-btn:hover, .like-btn.liked {
+      border-color: rgba(249,115,22,.4);
+      color: #fdba74; background: rgba(249,115,22,.08);
+    }
+    .like-btn.liked .like-heart { transform: scale(1.3); }
+    .like-heart { display: inline-block; transition: transform .2s cubic-bezier(.34,1.4,.64,1); }
+
+    /* ── Contact Modal ── */
+    .contact-modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      width: 100%; max-width: 560px;
+      max-height: 92vh; overflow-y: auto;
+      transform: scale(.94) translateY(16px);
+      transition: transform .35s cubic-bezier(.34,1.2,.64,1), opacity .3s;
+      opacity: 0;
+    }
+    .modal-backdrop.open .contact-modal-box { transform: scale(1) translateY(0); opacity: 1; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: var(--surface); border: 1px solid rgba(110,231,183,.3);
+      border-radius: 12px; padding: 14px 20px;
+      font-size: 13px; color: var(--text);
+      transform: translateY(80px); opacity: 0;
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- Glow blobs -->
+<div class="glow-blob" style="width:500px;height:500px;background:rgba(110,231,183,.04);top:-150px;right:-100px;"></div>
+<div class="glow-blob" style="width:400px;height:400px;background:rgba(99,102,241,.03);bottom:10%;left:-100px;animation-delay:3s;"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span style="color:var(--accent);">✓</span>
+  <span id="toast-msg">Message sent successfully!</span>
+</div>
+
+<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<nav>
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="#hero" style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:.06em;">
+      VanzTyl<span style="color:var(--muted);">_</span>
+    </a>
+
+    <!-- Center slot: tabs or scroll-up, mutually exclusive -->
+    <div style="position:absolute;left:50%;transform:translateX(-50%);">
+      <!-- Nav tab group (visible when tabs section NOT in view) -->
+      <div class="nav-center-slot hidden" id="navTabGroup">
+        <div class="nav-tab-group">
+          <button class="nav-tab-btn active" data-nav-tab="projects" onclick="navTabClick(this,'projects')">Projects</button>
+          <button class="nav-tab-btn" data-nav-tab="education" onclick="navTabClick(this,'education')">Education</button>
+          <button class="nav-tab-btn" data-nav-tab="resume" onclick="navTabClick(this,'resume')">Resume</button>
+        </div>
+      </div>
+      <!-- Scroll back up (visible when tabs section IS in view) -->
+      <div class="nav-center-slot hidden" id="navScrollUp">
+        <button class="nav-scroll-up-btn" onclick="scrollToHero()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          Scroll Back Up
+        </button>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <div class="avail-pill">
+        <span class="status-dot" style="width:6px;height:6px;"></span>
+        Open to Work
+      </div>
+      <button class="cta-primary" style="padding:8px 18px;font-size:12px;" onclick="openContactModal()">Hire Me</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section id="hero" class="hero-section flex items-center pt-14">
+  <div class="max-w-6xl mx-auto px-6 py-6 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left col -->
+      <div>
+        <div class="hero-badge mb-6">
+          <span></span>
+          Available for Opportunities
+        </div>
+
+        <div class="flex items-center gap-4 mb-6">
+          <div class="avatar-ring">VT</div>
+          <div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em;">COMPUTER SCIENCE STUDENT</div>
+            <div style="font-size:13px;color:var(--text);">Age 20 · Philippines</div>
+          </div>
+        </div>
+
+        <h1 style="font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;margin-bottom:20px;">
+          <span class="gradient-name">VanzTyl</span><br>
+          <span style="color:var(--text);font-size:clamp(1.4rem,3vw,2rem);font-weight:600;">AI & Cloud Focused<br>Developer</span>
+        </h1>
+
+        <p style="color:var(--muted);line-height:1.7;font-size:15px;max-width:460px;margin-bottom:24px;">
+          BS Computer Science student specializing in <span style="color:var(--accent);">AI & Cloud Computing</span>.
+          Passionate about machine learning, data science, and building intelligent systems.
+          Currently open for commissions, part-time contracts, and full-time remote roles.
+        </p>
+
+        <!-- Interest tags -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);">AI / Machine Learning</span>
+          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;">Data Science</span>
+          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;">Deep Learning</span>
+          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;">Cloud Computing</span>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-3">
+          <button onclick="openContactModal()" class="cta-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            Let's Connect
+          </button>
+          <button onclick="scrollToTab('resume')" class="cta-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            View Resume
+          </button>
+          <button onclick="scrollToTab('projects')" class="cta-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            See Projects
+          </button>
+        </div>
+      </div>
+
+      <!-- Right col — stat cards -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="stat-card col-span-2">
+          <div class="section-label">Current Status</div>
+          <div style="font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;">Open for Opportunities</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.6;">
+            Commissions · Part-Time Contracts · Full-Time Remote Jobs
+          </div>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Commission</span>
+            <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Part-Time</span>
+            <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Full-Time Remote</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="section-label">Currently Enrolled At</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">CIIT College of Innovative and Integrated Technology</div>
+          <br>
+          <div class="section-label">Taking</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Bachelor in Computer Science</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">AI & Cloud Computing</div>
+        </div>
+        <div class="stat-card">
+          <div class="section-label">Focus Areas</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">Machine Learning / Deep Learning</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Data Science & AI</div>
+        </div>
+        <div class="stat-card col-span-2">
+          <div class="section-label">Quick Reach</div>
+          <div class="flex gap-3 mt-2">
+            <button onclick="openContactModal()" class="social-btn" title="Email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            </button>
+            <a href="#" class="social-btn" title="GitHub" onclick="showToast('GitHub link coming soon!')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="#" class="social-btn" title="LinkedIn" onclick="showToast('LinkedIn link coming soon!')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ MAIN TABS ══════════════════════════ -->
+<section id="main-tabs" class="relative z-1 max-w-6xl mx-auto px-6 pb-24">
+
+  <!-- PGR-Style Tab Bar -->
+  <div class="tab-bar-scroll">
+    <div class="tab-bar tab-bar-inner" id="tabBar">
+      <button class="tab-btn active" data-tab="projects" onclick="switchTab(this,'projects')">Projects</button>
+      <button class="tab-btn" data-tab="education" onclick="switchTab(this,'education')">Education</button>
+      <button class="tab-btn" data-tab="resume" onclick="switchTab(this,'resume')">Resume / CV</button>
+      <!-- PGR sliding indicator -->
+      <div class="tab-indicator" id="tabIndicator"></div>
+    </div>
+  </div>
+
+  <!-- ─────────── PROJECTS ─────────── -->
+  <div class="tab-panel active py-10" id="panel-projects">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <div class="section-label">Portfolio</div>
+        <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Projects</h2>
+      </div>
+      <!-- Tag filters -->
+      <div class="flex flex-wrap gap-2" id="tagFilters">
+        <button class="filter-tag active" data-filter="all">All</button>
+        <button class="filter-tag" data-filter="AI">AI</button>
+        <button class="filter-tag" data-filter="ML">Machine Learning</button>
+        <button class="filter-tag" data-filter="Data">Data Science</button>
+        <button class="filter-tag" data-filter="Web">Web Dev</button>
+        <button class="filter-tag" data-filter="Cloud">Cloud</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="projectGrid">
+
+      <!-- Project cards -->
+      <div class="project-card" data-tags="AI,ML" data-project-id="0" onclick="openProjectModal(0)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <span class="tag type">AI</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Sentiment Analysis Engine</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">NLP model for real-time sentiment classification on social media text using transformer architecture.</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">Python</span>
+          <span class="tag lang">PyTorch</span>
+          <span class="tag lang">HuggingFace</span>
+          <span class="tag">ML</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="Data,ML" data-project-id="1" onclick="openProjectModal(1)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="tag type">Data Science</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Predictive Analytics Dashboard</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Interactive dashboard for visualizing ML model predictions and training metrics with real-time updates.</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">Python</span>
+          <span class="tag lang">Pandas</span>
+          <span class="tag lang">Streamlit</span>
+          <span class="tag">Data</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="Cloud,Web" data-project-id="2" onclick="openProjectModal(2)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fdba74" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+          </div>
+          <span class="tag type">Cloud</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Serverless ML API</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Deployed ML inference endpoint on AWS Lambda with auto-scaling and model versioning via S3.</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">Python</span>
+          <span class="tag lang">AWS</span>
+          <span class="tag lang">FastAPI</span>
+          <span class="tag">Cloud</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="AI,ML" data-project-id="3" onclick="openProjectModal(3)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f9a8d4" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="tag type">AI</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Conversational Chatbot</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Fine-tuned language model for domain-specific Q&A with retrieval-augmented generation (RAG).</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">Python</span>
+          <span class="tag lang">LangChain</span>
+          <span class="tag lang">OpenAI</span>
+          <span class="tag">AI</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="Web,Data" data-project-id="4" onclick="openProjectModal(4)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <span class="tag type">Web Dev</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Data Viz Portfolio App</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Full-stack web application for uploading CSV datasets and generating interactive charts on the fly.</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">JavaScript</span>
+          <span class="tag lang">D3.js</span>
+          <span class="tag lang">Node.js</span>
+          <span class="tag">Data</span>
+          <span class="tag">Web</span>
+        </div>
+      </div>
+
+      <div class="project-card" data-tags="ML,Data" data-project-id="5" onclick="openProjectModal(5)">
+        <div class="flex items-start justify-between mb-3">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.15);display:flex;align-items:center;justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4L7 11"/></svg>
+          </div>
+          <span class="tag type">Machine Learning</span>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Stock Price Predictor</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">LSTM-based time-series model for short-term stock trend prediction with backtesting pipeline.</p>
+        <div class="flex flex-wrap">
+          <span class="tag lang">Python</span>
+          <span class="tag lang">TensorFlow</span>
+          <span class="tag lang">Keras</span>
+          <span class="tag">ML</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:24px;">
+      💡 Replace project data with your actual work — these are placeholder entries to showcase the layout.
+    </p>
+  </div>
+
+  <!-- ─────────── EDUCATION ─────────── -->
+  <div class="tab-panel py-10" id="panel-education">
+    <div class="mb-10">
+      <div class="section-label">Background</div>
+      <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Education Journey</h2>
+      <p style="font-size:14px;color:var(--muted);margin-top:6px;">From classroom to cloud — tracing the path that shaped my passion for AI.</p>
+    </div>
+
+    <!-- Research interests sidebar above timeline on mobile, beside on lg -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+      <!-- Zigzag Timeline -->
+      <div class="lg:col-span-3">
+        <div class="edu-timeline" id="eduTimeline">
+          <div class="edu-timeline-line"></div>
+
+          <!-- ① College — from LEFT -->
+          <div class="edu-zig-item from-left">
+            <div class="edu-zig-card">
+              <div class="edu-year-badge">2022 – Present</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                <div style="font-size:16px;font-weight:800;color:var(--text);">Bachelor of Science in Computer Science</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);white-space:nowrap;">In Progress</span>
+              </div>
+              <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;">Specialization: AI & Cloud Computing</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Pursuing BSCS with a deep-dive into Artificial Intelligence and Cloud Computing. Coursework covers machine learning, neural networks, distributed systems, cloud architecture, and data engineering.</p>
+              <div class="flex flex-wrap gap-2">
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Machine Learning</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Deep Learning</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Data Structures</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Cloud Arch.</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Algorithms</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">DB Systems</span>
+              </div>
+            </div>
+            <div class="edu-zig-node" style="border-color:rgba(110,231,183,.4);color:var(--accent);">🎓</div>
+          </div>
+
+          <!-- ② Senior High — from RIGHT -->
+          <div class="edu-zig-item from-right">
+            <div class="edu-zig-card">
+              <div class="edu-year-badge">2020 – 2022</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                <div style="font-size:16px;font-weight:800;color:var(--text);">Senior High School</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;white-space:nowrap;">Completed</span>
+              </div>
+              <div style="font-size:13px;color:#a5b4fc;font-weight:600;margin-bottom:10px;">STEM Strand — Science, Technology, Engineering & Mathematics</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Completed senior high school under the STEM strand, building a strong mathematical and scientific foundation — and my first taste of programming — that pointed me straight toward a CS degree.</p>
+              <div class="flex flex-wrap gap-2">
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Physics</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Advanced Math</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Computer Science Intro</span>
+                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Research Methods</span>
+              </div>
+            </div>
+            <div class="edu-zig-node" style="border-color:rgba(99,102,241,.4);color:#a5b4fc;">📐</div>
+          </div>
+
+          <!-- ③ Junior High — from LEFT -->
+          <div class="edu-zig-item from-left">
+            <div class="edu-zig-card">
+              <div class="edu-year-badge">2016 – 2020</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                <div style="font-size:16px;font-weight:800;color:var(--text);">Junior High School</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;white-space:nowrap;">Completed</span>
+              </div>
+              <div style="font-size:13px;color:#fdba74;font-weight:600;margin-bottom:10px;">Grades 7 – 10 · K-12 Program</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;">Developed logical thinking and problem-solving skills through mathematics, science, and early technology subjects. Discovered a strong inclination toward science and logical reasoning.</p>
+            </div>
+            <div class="edu-zig-node" style="border-color:rgba(249,115,22,.4);color:#fdba74;">📚</div>
+          </div>
+
+          <!-- ④ Elementary — from RIGHT -->
+          <div class="edu-zig-item from-right">
+            <div class="edu-zig-card">
+              <div class="edu-year-badge">2010 – 2016</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                <div style="font-size:16px;font-weight:800;color:var(--text);">Elementary School</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;white-space:nowrap;">Completed</span>
+              </div>
+              <div style="font-size:13px;color:#f9a8d4;font-weight:600;margin-bottom:10px;">Grades 1 – 6 · Foundation Years</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;">The beginning of the journey. Built core literacy, numeracy, and a genuine curiosity for how things work — the spark that eventually ignited an AI obsession.</p>
+            </div>
+            <div class="edu-zig-node" style="border-color:rgba(236,72,153,.4);color:#f9a8d4;">✏️</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right sidebar -->
+      <div class="flex flex-col gap-4">
+        <div class="stat-card">
+          <div class="section-label">Research Interests</div>
+          <div class="flex flex-col gap-3 mt-2">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Machine Learning</span><span style="font-size:12px;color:var(--accent);">95%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Deep Learning</span><span style="font-size:12px;color:var(--accent);">88%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Data Science</span><span style="font-size:12px;color:var(--accent);">90%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Cloud Computing</span><span style="font-size:12px;color:var(--accent);">75%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">NLP / LLMs</span><span style="font-size:12px;color:var(--accent);">80%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="section-label">Student Snapshot</div>
+          <div style="font-size:28px;font-weight:800;color:var(--accent);">Year 3</div>
+          <div style="font-size:12px;color:var(--muted);">of 4-Year Program</div>
+          <div style="margin-top:12px;font-size:13px;color:var(--text);">Age 20 · Philippines</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:4px;">BSCS · AI & Cloud</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="section-label">Certifications</div>
+          <div class="flex flex-col gap-3" style="margin-top:4px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--accent);margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">ML Specialization <span style="color:var(--muted);">· DeepLearning.AI</span></span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#a5b4fc;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">AWS Cloud Practitioner <span style="color:var(--muted);">· AWS</span></span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#fdba74;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">Deep Learning PyTorch <span style="color:var(--muted);">· Udemy</span></span></div>
+            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f9a8d4;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">Data Science Python <span style="color:var(--muted);">· DataCamp</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── RESUME ─────────── -->
+  <div class="tab-panel py-10" id="panel-resume">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <div class="section-label">Career</div>
+        <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Resume / CV</h2>
+      </div>
+      <button class="cta-primary" onclick="showToast('PDF download will be added here!')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main resume col -->
+      <div class="lg:col-span-2 flex flex-col gap-8">
+
+        <!-- Summary -->
+        <div class="stat-card" style="border-color:rgba(110,231,183,.2);">
+          <div class="resume-section-title">Profile Summary</div>
+          <p style="font-size:14px;color:var(--muted);line-height:1.8;">
+            Motivated 3rd-year Computer Science student specializing in Artificial Intelligence & Cloud Computing.
+            Passionate about developing intelligent systems, data-driven applications, and scalable cloud solutions.
+            Seeking commissions, part-time, or full-time remote opportunities where I can apply and grow my skills in ML/AI.
+          </p>
+        </div>
+
+        <!-- Experience -->
+        <div>
+          <div class="resume-section-title">Experience</div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Freelance AI/ML Developer</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Self-Employed · Remote</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2023 – Present</div>
+            <ul style="list-style:none;font-size:13px;color:var(--muted);line-height:1.8;">
+              <li>→ Built ML models for client data classification and prediction tasks</li>
+              <li>→ Developed NLP pipelines for text analytics projects</li>
+              <li>→ Deployed serverless APIs on AWS for model inference</li>
+            </ul>
+          </div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Research & Development Intern</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Academic Institution · On-site</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2023</div>
+            <ul style="list-style:none;font-size:13px;color:var(--muted);line-height:1.8;">
+              <li>→ Assisted in data collection and preprocessing for research projects</li>
+              <li>→ Implemented baseline ML models for comparison studies</li>
+              <li>→ Contributed to academic paper writing and documentation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Projects highlight -->
+        <div>
+          <div class="resume-section-title">Notable Projects</div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Sentiment Analysis Engine</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Transformer-based NLP classifier · Python · PyTorch · HuggingFace</div>
+          </div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Serverless ML API</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">AWS Lambda deployment · Python · FastAPI · S3 Model Registry</div>
+          </div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Stock Price Predictor</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">LSTM Time-Series Model · Python · TensorFlow · Keras</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="flex flex-col gap-5">
+
+        <!-- Tech skills -->
+        <div class="stat-card">
+          <div class="resume-section-title">Technical Skills</div>
+          <div class="flex flex-col gap-3">
+            <div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Languages</div>
+              <div class="flex flex-wrap gap-1">
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Python</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">JavaScript</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">SQL</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Java</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">C++</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">AI / ML</div>
+              <div class="flex flex-wrap gap-1">
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">PyTorch</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">TensorFlow</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Scikit-learn</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">HuggingFace</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">LangChain</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Cloud & Tools</div>
+              <div class="flex flex-wrap gap-1">
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">AWS</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Docker</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Git</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">FastAPI</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft skills -->
+        <div class="stat-card">
+          <div class="resume-section-title">Soft Skills</div>
+          <div class="flex flex-col gap-2" style="font-size:13px;color:var(--muted);">
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Problem Solving</div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Fast Learner</div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Detail-Oriented</div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Remote-Ready</div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Research-Driven</div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="stat-card">
+          <div class="resume-section-title">Languages</div>
+          <div style="font-size:13px;color:var(--text);margin-bottom:6px;">Filipino <span style="color:var(--muted);">— Native</span></div>
+          <div style="font-size:13px;color:var(--text);">English <span style="color:var(--muted);">— Professional</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── CONTACT panel removed — now a modal ─────────── -->
+
+</section>
+
+<!-- ══════════════════════════ PROJECT MODAL ══════════════════════════ -->
+<div class="modal-backdrop" id="projectModal" onclick="closeProjectModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <!-- Hero image area -->
+    <div class="modal-img-hero" id="modalImgHero"></div>
+    <div class="modal-inner">
+      <!-- Header row -->
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:16px;margin-bottom:4px;">
+        <div>
+          <div id="modalType" style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;"></div>
+          <h2 id="modalTitle" style="font-size:22px;font-weight:800;color:var(--text);line-height:1.2;"></h2>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+          <!-- Like button -->
+          <button class="like-btn" id="likeBtn" onclick="toggleLike()">
+            <span class="like-heart" id="likeHeart">♥</span>
+            <span id="likeCount">0</span>
+          </button>
+          <!-- Close -->
+          <button onclick="closeProjectModal()" style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">×</button>
+        </div>
+      </div>
+
+      <!-- Modal tab bar -->
+      <div class="modal-tab-bar">
+        <button class="modal-tab-btn active" data-mtab="overview" onclick="switchModalTab(this,'overview')">Overview</button>
+        <button class="modal-tab-btn" data-mtab="techstack" onclick="switchModalTab(this,'techstack')">Tech Stack</button>
+      </div>
+
+      <!-- Overview panel -->
+      <div class="modal-panel active" id="mpanel-overview">
+        <p id="modalDesc" style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px;"></p>
+        <div id="modalFeatures"></div>
+      </div>
+
+      <!-- Tech Stack panel -->
+      <div class="modal-panel" id="mpanel-techstack">
+        <div id="modalStack"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ CONTACT MODAL ══════════════════════════ -->
+<div class="modal-backdrop" id="contactModal" onclick="closeContactModal(event)">
+  <div class="contact-modal-box" onclick="event.stopPropagation()">
+    <!-- Header gradient bar -->
+    <div style="background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(99,102,241,.06));border-radius:20px 20px 0 0;padding:28px 28px 20px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);">Get In Touch</div>
+          <div style="font-size:22px;font-weight:800;color:var(--text);margin-top:2px;">Let's Build Something.</div>
+        </div>
+        <button onclick="closeContactModal()" style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">×</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Commission</span>
+        <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Part-Time</span>
+        <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Full-Time Remote</span>
+      </div>
+    </div>
+    <!-- Form body -->
+    <div style="padding:24px 28px 28px;">
+      <div class="flex flex-col gap-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label style="font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.06em;display:block;margin-bottom:6px;">YOUR NAME</label>
+            <input type="text" class="email-input" id="cmName" placeholder="John Doe" />
+          </div>
+          <div>
+            <label style="font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.06em;display:block;margin-bottom:6px;">YOUR EMAIL</label>
+            <input type="email" class="email-input" id="cmEmail" placeholder="hello@example.com" />
+          </div>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.06em;display:block;margin-bottom:6px;">SUBJECT</label>
+          <input type="text" class="email-input" id="cmSubject" placeholder="Project Inquiry / Job Offer / Commission" />
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.06em;display:block;margin-bottom:6px;">MESSAGE</label>
+          <textarea class="email-input" id="cmMessage" placeholder="Tell me about your project or opportunity..." style="min-height:110px;"></textarea>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+          <div style="display:flex;gap:10px;">
+            <a href="#" class="social-btn" title="GitHub" onclick="showToast('GitHub coming soon!')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="#" class="social-btn" title="LinkedIn" onclick="showToast('LinkedIn coming soon!')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+          <button class="cta-primary" onclick="handleContactSubmit()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<footer style="border-top:1px solid var(--border);padding:24px 0;position:relative;z-index:1;">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent);">VanzTyl_</div>
+    <div style="font-size:12px;color:var(--muted);">BSCS · AI & Cloud Computing · Philippines · © 2024</div>
+    <div class="avail-pill">
+      <span class="status-dot" style="width:6px;height:6px;"></span>
+      Open to Work
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ══════════════════════ PROJECT DATA ══════════════════════
+  const projects = [
+    {
+      id: 0, title: 'Sentiment Analysis Engine', type: 'AI / NLP', emoji: '🧠',
+      bg: 'linear-gradient(135deg,#0a1a14,#0d2420)',
+      desc: 'A transformer-based NLP model for real-time sentiment classification on social media text. Trained on a large corpus of labeled tweets and product reviews, the model achieves 93% accuracy on held-out test data. Designed for low-latency inference and integrates with streaming pipelines for live social monitoring.',
+      features: ['Real-time inference pipeline','Multi-class sentiment classification (Positive / Neutral / Negative)','REST API endpoint with rate limiting','Batch processing support for large datasets','Confidence score outputs with attention visualization'],
+      stack: [{cat:'ML Framework',items:['PyTorch','HuggingFace Transformers','BERT (fine-tuned)']},{cat:'Data Processing',items:['Python','Pandas','NumPy','NLTK']},{cat:'Deployment',items:['FastAPI','Docker','ONNX Runtime']}]
+    },
+    {
+      id: 1, title: 'Predictive Analytics Dashboard', type: 'Data Science', emoji: '📊',
+      bg: 'linear-gradient(135deg,#0a0f1e,#0d1230)',
+      desc: 'An interactive web dashboard that visualizes machine learning model predictions and training metrics in real-time. Supports uploading datasets, selecting features, training baseline models, and monitoring performance — all from a browser-based UI without any coding required.',
+      features: ['Auto-ML baseline model selection','Real-time training metrics visualization','Interactive feature importance charts','CSV/Excel dataset upload support','Exportable prediction reports'],
+      stack: [{cat:'Frontend & Dashboard',items:['Streamlit','Plotly','Altair']},{cat:'ML & Data',items:['Python','Pandas','Scikit-learn','XGBoost']},{cat:'Infrastructure',items:['SQLite (local cache)','Docker']}]
+    },
+    {
+      id: 2, title: 'Serverless ML API', type: 'Cloud · MLOps', emoji: '☁️',
+      bg: 'linear-gradient(135deg,#1a0d00,#241008)',
+      desc: 'A fully serverless machine learning inference platform deployed on AWS Lambda. Handles auto-scaling from 0 to thousands of concurrent requests. Models are versioned in S3 and swapped live via Lambda layer updates — no downtime required.',
+      features: ['Zero cold-start optimization via Lambda SnapStart','Model versioning & blue/green switching via S3','Auto-scaling from 0 to 10k+ concurrent requests','CloudWatch logging & alerting','Cost-effective: pay only per inference call'],
+      stack: [{cat:'Cloud',items:['AWS Lambda','AWS S3','AWS API Gateway','CloudWatch']},{cat:'Backend',items:['Python','FastAPI','Mangum (ASGI adapter)']},{cat:'ML Runtime',items:['Scikit-learn','ONNX Runtime','Joblib']}]
+    },
+    {
+      id: 3, title: 'Conversational Chatbot', type: 'AI · LLM', emoji: '💬',
+      bg: 'linear-gradient(135deg,#18071a,#200d24)',
+      desc: 'A domain-specific conversational AI built with Retrieval-Augmented Generation (RAG). The system indexes custom documents into a vector database and retrieves semantically relevant context before generating responses — dramatically reducing hallucinations compared to vanilla LLM usage.',
+      features: ['RAG pipeline with FAISS vector retrieval','Custom document ingestion (PDF, DOCX, TXT)','Conversation memory with sliding context window','Streaming token output for low perceived latency','Prompt injection defense & content filtering'],
+      stack: [{cat:'LLM & Retrieval',items:['OpenAI GPT-4','LangChain','FAISS','HuggingFace Embeddings']},{cat:'Backend',items:['Python','FastAPI','WebSockets']},{cat:'Storage',items:['PostgreSQL (chat history)','S3 (document store)']}]
+    },
+    {
+      id: 4, title: 'Data Viz Portfolio App', type: 'Web Dev · Data', emoji: '📈',
+      bg: 'linear-gradient(135deg,#051a18,#072420)',
+      desc: 'A full-stack web application that lets users upload CSV/Excel datasets and instantly generate interactive, shareable visualizations. The backend auto-detects column types and suggests appropriate chart types. Users can export dashboards as static HTML or live shareable links.',
+      features: ['Drag-and-drop CSV/Excel upload','Auto column type detection (numeric, categorical, temporal)','Suggested chart types per data shape','Interactive filters and drill-down','Export to shareable HTML snapshot'],
+      stack: [{cat:'Frontend',items:['Vanilla JS','D3.js','HTML/CSS','Tailwind CSS']},{cat:'Backend',items:['Node.js','Express','Multer (file upload)']},{cat:'Data Processing',items:['Python microservice','Pandas','NumPy']}]
+    },
+    {
+      id: 5, title: 'Stock Price Predictor', type: 'Machine Learning · Finance', emoji: '📉',
+      bg: 'linear-gradient(135deg,#131100,#1e1900)',
+      desc: 'An LSTM-based time-series model for short-term stock price prediction, trained on 10+ years of historical OHLCV data. Includes a full backtesting pipeline to evaluate strategy performance across market regimes — bull, bear, and sideways.',
+      features: ['LSTM with attention mechanism for sequence modeling','Technical indicator feature engineering (RSI, MACD, Bollinger Bands)','Walk-forward backtesting pipeline','Sharpe ratio & max drawdown evaluation metrics','Real-time data feed via Yahoo Finance API'],
+      stack: [{cat:'Deep Learning',items:['Python','TensorFlow','Keras','NumPy']},{cat:'Data & Features',items:['Pandas','yfinance','TA-Lib','Scikit-learn (preprocessing)']},{cat:'Visualization',items:['Matplotlib','Plotly','Jupyter Notebook']}]
+    }
+  ];
+
+  const likeCounts = [12,8,15,21,6,9];
+  const liked = [false,false,false,false,false,false];
+  let currentProjectId = 0;
+
+  // ── Project Modal ──
+  function openProjectModal(id) {
+    currentProjectId = id;
+    const p = projects[id];
+    document.getElementById('modalImgHero').innerHTML = `<div style="font-size:64px;position:relative;z-index:1;">${p.emoji}</div>`;
+    document.getElementById('modalImgHero').style.background = p.bg;
+    document.getElementById('modalType').textContent = p.type;
+    document.getElementById('modalTitle').textContent = p.title;
+    document.getElementById('modalDesc').textContent = p.desc;
+    document.getElementById('modalFeatures').innerHTML = p.features.map(f=>`
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;">
+        <span style="color:var(--accent);font-size:12px;margin-top:2px;flex-shrink:0;">◆</span>
+        <span style="font-size:13px;color:var(--text);">${f}</span>
+      </div>`).join('');
+    document.getElementById('modalStack').innerHTML = p.stack.map(s=>`
+      <div style="margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">${s.cat}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">${s.items.map(i=>`<span style="padding:4px 12px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(110,231,183,.07);border:1px solid rgba(110,231,183,.15);color:var(--accent);">${i}</span>`).join('')}</div>
+      </div>`).join('');
+    updateLikeBtn();
+    document.querySelectorAll('.modal-tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelector('.modal-tab-btn[data-mtab="overview"]').classList.add('active');
+    document.querySelectorAll('.modal-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('mpanel-overview').classList.add('active');
+    document.getElementById('projectModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeProjectModal(e) {
+    if(e && e.target!==document.getElementById('projectModal')) return;
+    document.getElementById('projectModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  function switchModalTab(btn,tabId) {
+    document.querySelectorAll('.modal-tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.modal-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('mpanel-'+tabId).classList.add('active');
+  }
+
+  function toggleLike() {
+    liked[currentProjectId]=!liked[currentProjectId];
+    likeCounts[currentProjectId]+=liked[currentProjectId]?1:-1;
+    updateLikeBtn();
+  }
+
+  function updateLikeBtn() {
+    const btn=document.getElementById('likeBtn');
+    const heart=document.getElementById('likeHeart');
+    document.getElementById('likeCount').textContent=likeCounts[currentProjectId];
+    if(liked[currentProjectId]){btn.classList.add('liked');heart.style.transform='scale(1.4)';setTimeout(()=>heart.style.transform='scale(1)',300);}
+    else{btn.classList.remove('liked');}
+  }
+
+  // ── Contact Modal ──
+  function openContactModal() {
+    document.getElementById('contactModal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeContactModal(e) {
+    if(e&&e.target!==document.getElementById('contactModal')) return;
+    document.getElementById('contactModal').classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  // ══════════════════════ PGR TAB SYSTEM ══════════════════════
+  function initTabIndicator() {
+    const bar=document.getElementById('tabBar');
+    const indicator=document.getElementById('tabIndicator');
+    const activeBtn=bar.querySelector('.tab-btn.active');
+    if(!activeBtn) return;
+    indicator.style.left=activeBtn.offsetLeft+'px';
+    indicator.style.width=activeBtn.offsetWidth+'px';
+  }
+
+  function switchTab(btn,tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const indicator=document.getElementById('tabIndicator');
+    indicator.style.left=btn.offsetLeft+'px';
+    indicator.style.width=btn.offsetWidth+'px';
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+tabId).classList.add('active');
+    // sync nav tabs
+    document.querySelectorAll('.nav-tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.navTab===tabId));
+    if(tabId==='education') setTimeout(triggerEduAnimation,100);
+  }
+
+  // ── Nav tab click ──
+  function navTabClick(btn,tabId) {
+    scrollToTab(tabId);
+    document.querySelectorAll('.nav-tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function scrollToTab(tabId) {
+    document.getElementById('main-tabs').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{
+      const btn=document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if(btn) switchTab(btn,tabId);
+    },400);
+  }
+
+  function scrollToHero() {
+    document.getElementById('hero').scrollIntoView({behavior:'smooth'});
+  }
+
+  // ── Nav observer: tabs in view → show scroll-up; out of view → show nav tabs ──
+  function initNavObserver() {
+    const tabsSection=document.getElementById('main-tabs');
+    const navTabGroup=document.getElementById('navTabGroup');
+    const navScrollUp=document.getElementById('navScrollUp');
+    const observer=new IntersectionObserver((entries)=>{
+      if(entries[0].isIntersecting){
+        navTabGroup.classList.remove('visible'); navTabGroup.classList.add('hidden');
+        navScrollUp.classList.remove('hidden'); navScrollUp.classList.add('visible');
+      } else {
+        navScrollUp.classList.remove('visible'); navScrollUp.classList.add('hidden');
+        navTabGroup.classList.remove('hidden'); navTabGroup.classList.add('visible');
+      }
+    },{threshold:0.05});
+    observer.observe(tabsSection);
+  }
+
+  // ══════════════════════ TAG FILTER ══════════════════════
+  document.getElementById('tagFilters').addEventListener('click',function(e){
+    const btn=e.target.closest('.filter-tag');
+    if(!btn) return;
+    document.querySelectorAll('.filter-tag').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('#projectGrid .project-card').forEach(card=>{
+      const tags=(card.dataset.tags||'').split(',');
+      if(filter==='all'||tags.includes(filter)){card.style.display='';card.style.animation='fadeSlideIn .3s cubic-bezier(.4,0,.2,1)';}
+      else{card.style.display='none';}
+    });
+  });
+
+  // ══════════════════════ CONTACT SUBMIT ══════════════════════
+  function handleContactSubmit() {
+    const name=(document.getElementById('cmName')||{value:''}).value.trim();
+    const email=(document.getElementById('cmEmail')||{value:''}).value.trim();
+    const subject=(document.getElementById('cmSubject')||{value:''}).value.trim();
+    const message=(document.getElementById('cmMessage')||{value:''}).value.trim();
+    if(!name||!email||!message){showToast('⚠ Please fill in all required fields.',true);return;}
+    if(!email.includes('@')){showToast('⚠ Please enter a valid email address.',true);return;}
+    const mailto=`mailto:vanztyl@email.com?subject=${encodeURIComponent(subject||'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
+    window.location.href=mailto;
+    showToast('Opening your mail client...');
+    setTimeout(()=>{document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';},500);
+  }
+
+  // ══════════════════════ EDU ZIGZAG ANIMATION ══════════════════════
+  function triggerEduAnimation() {
+    document.querySelectorAll('.edu-zig-item').forEach((item,i)=>{
+      setTimeout(()=>{
+        item.querySelector('.edu-zig-card').classList.add('in-view');
+        item.querySelector('.edu-zig-node').classList.add('in-view');
+      },i*200);
+    });
+  }
+
+  function initEduObserver() {
+    const timeline=document.getElementById('eduTimeline');
+    if(!timeline) return;
+    new IntersectionObserver((entries)=>{
+      if(entries[0].isIntersecting) triggerEduAnimation();
+    },{threshold:0.05}).observe(timeline);
+  }
+
+  // ══════════════════════ TOAST ══════════════════════
+  let toastTimer;
+  function showToast(msg,isError) {
+    clearTimeout(toastTimer);
+    const toast=document.getElementById('toast');
+    document.getElementById('toast-msg').textContent=msg;
+    toast.style.borderColor=isError?'rgba(248,113,113,.3)':'rgba(110,231,183,.3)';
+    toast.classList.add('show');
+    toastTimer=setTimeout(()=>toast.classList.remove('show'),3000);
+  }
+
+  // ── ESC key closes modals ──
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'){
+      document.getElementById('projectModal').classList.remove('open');
+      document.getElementById('contactModal').classList.remove('open');
+      document.body.style.overflow='';
+    }
+  });
+
+  // ══════════════════════ INIT ══════════════════════
+  window.addEventListener('load',()=>{
+    initTabIndicator();
+    initNavObserver();
+    initEduObserver();
+  });
+  window.addEventListener('resize',initTabIndicator);
+</script>
+</body>
+</html>
