@@ -536,6 +536,281 @@
       display: flex; align-items: center; gap: 10px;
     }
     .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ══════════════════════════════════════════
+       LIGHT THEME
+    ══════════════════════════════════════════ */
+    body.light {
+      --accent:   #f97316;
+      --accent2:  #ea580c;
+      --bg:       #f0f0f5;
+      --surface:  #ffffff;
+      --surface2: #e8e8ef;
+      --border:   #c8c8d8;
+      --text:     #0f0f14;
+      --muted:    #5a6070;
+      --tag-bg:   #e0e0ea;
+    }
+
+    /* ── Nav ── */
+    body.light nav {
+      background: rgba(240,240,245,.94);
+      border-bottom: 1px solid #c0c0cc;
+    }
+
+    /* ── Tab bar ── */
+    body.light .tab-bar { background: var(--bg); border-bottom-color: #b8b8c8; }
+    body.light .tab-indicator {
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      box-shadow: 0 0 12px rgba(249,115,22,.6), 0 0 24px rgba(249,115,22,.3);
+    }
+    body.light .tab-btn.active { color: var(--accent); }
+    body.light .tab-btn.active::before {
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    body.light .tab-btn:hover { color: var(--accent2); }
+
+    /* ── Scrollbar ── */
+    body.light ::-webkit-scrollbar-track { background: var(--bg); }
+    body.light ::-webkit-scrollbar-thumb { background: #b0b0c4; }
+    body.light ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ── Selection ── */
+    body.light ::selection { background: rgba(249,115,22,.15); color: var(--accent2); }
+
+    /* ── Glow blobs (light-adjusted) ── */
+    body.light .glow-blob { opacity: 0; }
+
+    /* ── Gradient name ── */
+    body.light .gradient-name {
+      background: linear-gradient(135deg, #0f0f14 0%, var(--accent) 55%, var(--accent2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* ── Avatar: white bg, orange text ── */
+    body.light .avatar-ring {
+      background: #fff;
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(249,115,22,.12);
+    }
+    body.light .avatar-ring::after { border-color: rgba(249,115,22,.2); }
+
+    /* ── Hero badge: keep green (same as dark) ── */
+    body.light .hero-badge {
+      background: rgba(34,197,94,.08);
+      border-color: rgba(34,197,94,.25);
+      color: #16a34a;
+    }
+    body.light .hero-badge span { background: #16a34a; }
+
+    /* ── "COMPUTER SCIENCE STUDENT" label → orange accent ── */
+    body.light .cs-student-label { color: var(--accent) !important; font-weight: 700; }
+
+    /* --- Base Tag Styles (place this before the light theme section) --- */
+    [class^="interest-tag-"] {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid; /* Border width defined here */
+    }
+
+    /* --- Dark Theme Colors (Default) --- */
+    .interest-tag-ai    { background: rgba(110,231,183,.08); border-color: rgba(110,231,183,.2); color: var(--accent); }
+    .interest-tag-data  { background: rgba(99,102,241,.08);  border-color: rgba(99,102,241,.2);  color: #a5b4fc; }
+    .interest-tag-dl    { background: rgba(249,115,22,.08);  border-color: rgba(249,115,22,.2);  color: #fdba74; }
+    .interest-tag-cloud { background: rgba(236,72,153,.08);  border-color: rgba(236,72,153,.2);  color: #f9a8d4; }
+
+    /* --- Updated Light Theme Colors (Vibrant/High Contrast) --- */
+    body.light .interest-tag-ai    { background: #fee2e2; border-color: #fca5a5; color: #991b1b; } /* Deep Red/Rose */
+    body.light .interest-tag-data  { background: #e0f2fe; border-color: #7dd3fc; color: #075985; } /* Rich Blue */
+    body.light .interest-tag-dl    { background: #fef3c7; border-color: #fcd34d; color: #92400e; } /* Amber/Gold */
+    body.light .interest-tag-cloud { background: #f0fdf4; border-color: #86efac; color: #166534; } /* Forest Green */
+
+    /* ── Project card tags — light-theme palette ── */
+    body.light .project-card .tag      { background:#fff7ed; border-color:#fed7aa; color:#c2410c; }
+    body.light .project-card .tag.lang { background:#eff6ff; border-color:#bfdbfe; color:#1e40af; }
+    body.light .project-card .tag.type { background:#fdf4ff; border-color:#e9d5ff; color:#7e22ce; }
+
+    /* ── Filter tags ── */
+    body.light .filter-tag { background:#fff; border-color:#c8c8d8; color:#5a6070; }
+    body.light .filter-tag:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
+    body.light .filter-tag.active { background:#fff7ed; border-color:var(--accent); color:var(--accent); box-shadow:0 0 8px rgba(249,115,22,.2); }
+
+    /* ── Section-label (accent) ── */
+    body.light .section-label { color: var(--accent); }
+    body.light .resume-section-title { color: var(--accent); }
+
+    /* ── Avail pills ── */
+    body.light .avail-pill { color:#15803d; background:rgba(22,163,74,.07); border-color:rgba(22,163,74,.25); }
+
+    /* ── CTA Primary: orange bg, white text, orange glow on hover ── */
+    body.light .cta-primary { background:var(--accent); color:#fff; border:1px solid var(--accent); }
+    body.light .cta-primary:hover { background:var(--accent2); border-color:var(--accent2); box-shadow:0 8px 28px rgba(249,115,22,.45); }
+
+    /* ── CTA Secondary: orange border+text, orange glow hover ── */
+    body.light .cta-secondary { border-color:#f9a87a; color:var(--accent); }
+    body.light .cta-secondary:hover { border-color:var(--accent); color:var(--accent2); background:#fff7ed; box-shadow:0 0 0 3px rgba(249,115,22,.12); }
+
+    /* ── Social buttons ── */
+    body.light .social-btn { border-color:#c8c8d8; color:#5a6070; background:#fff; }
+    body.light .social-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
+
+    /* ── Stat cards — stronger greyscale border ── */
+    body.light .stat-card { background:#fff; border:1px solid #b8b8cc; box-shadow:0 1px 6px rgba(0,0,0,.06); }
+    body.light .stat-card:hover { border-color:#f97316; box-shadow:0 4px 20px rgba(249,115,22,.12); }
+
+    /* ── Modal backdrops ── */
+    body.light .modal-backdrop { background: rgba(30,30,50,.45); }
+    body.light .modal-box { background:#fff; border:2px solid #9090a8; box-shadow:0 20px 60px rgba(0,0,0,.18); }
+    body.light .contact-modal-box { background:#fff; border:2px solid #9090a8; box-shadow:0 20px 60px rgba(0,0,0,.18); }
+    body.light .modal-tab-bar { border-bottom-color:#c0c0cc; }
+    body.light .modal-tab-btn { color:#5a6070; }
+    body.light .modal-tab-btn:hover { color:var(--accent); }
+    body.light .modal-tab-btn.active { color:var(--accent); }
+    body.light .modal-tab-btn.active::after {
+      background:linear-gradient(90deg,transparent,var(--accent),transparent);
+      box-shadow:0 0 8px rgba(249,115,22,.4);
+    }
+    body.light .modal-inner { background:#fff; }
+
+    /* ── Like button ── */
+    body.light .like-btn { background:#f5f5fa; border-color:#c0c0cc; color:#5a6070; }
+    body.light .like-btn:hover, body.light .like-btn.liked { border-color:rgba(239,68,68,.5); color:#dc2626; background:#fff5f5; }
+
+    /* ── Resume items ── */
+    body.light .resume-item { border-left-color:#c0c0d0; }
+    body.light .resume-item::before { background:var(--accent); box-shadow:0 0 8px rgba(249,115,22,.5); }
+
+    /* ── Skill bars ── */
+    body.light .skill-bar-wrap { background:#dde0ea; }
+    body.light .skill-bar { background:linear-gradient(90deg,var(--accent2),var(--accent)); box-shadow:0 0 8px rgba(249,115,22,.35); }
+
+    /* ── Email inputs ── */
+    body.light .email-input { background:#fff; border-color:#b8b8cc; color:#0f0f14; }
+    body.light .email-input::placeholder { color:#8090a0; }
+    body.light .email-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(249,115,22,.12); }
+
+    /* ── Edu zigzag ── */
+    body.light .edu-timeline-line { background:linear-gradient(to bottom,transparent,var(--accent),transparent); }
+    body.light .edu-zig-card { background:#fff; border:1px solid #b8b8cc; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+    body.light .edu-zig-card:hover { border-color:var(--accent); box-shadow:0 8px 28px rgba(249,115,22,.15); }
+    body.light .edu-zig-node { background:#f0f0f5; border-color:#c0c0d0; }
+    body.light .edu-year-badge { background:#f0f0f5; border-color:#c0c0d0; color:#5a6070; }
+
+    /* ── Edu achievement sub-tabs ── */
+    body.light .edu-achievements { border-top-color:#d0d0df; }
+    body.light .edu-ach-tab-btn { background:#f0f0f5; border-color:#c0c0d0; color:#5a6070; }
+    body.light .edu-ach-tab-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; }
+    body.light .edu-ach-tab-btn.active { background:#fff7ed; border-color:var(--accent); color:var(--accent); box-shadow:0 0 6px rgba(249,115,22,.2); }
+    body.light .edu-ach-item { background:#f8f8fc; border:1px solid #c8c8d8; }
+    body.light .edu-ach-item:hover { border-color:rgba(249,115,22,.4); }
+
+    /* ── Cert tags ── */
+    body.light .cert-tag-btn { background:#fff; border-color:#b8b8cc; color:#0f0f14; }
+    body.light .cert-tag-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.12); }
+
+    /* ── Nav tab buttons ── */
+    body.light .nav-tab-btn { color:#5a6070; }
+    body.light .nav-tab-btn:hover { color:var(--accent); background:rgba(249,115,22,.06); }
+    body.light .nav-tab-btn.active { color:var(--accent); background:#fff7ed; }
+    body.light .nav-tab-btn.active::after { background:var(--accent); box-shadow:0 0 6px rgba(249,115,22,.4); }
+    body.light .nav-scroll-up-btn { color:var(--accent); background:#fff7ed; border-color:#f9a87a; }
+    body.light .nav-scroll-up-btn:hover { background:#ffedd5; box-shadow:0 0 12px rgba(249,115,22,.25); }
+
+    /* ── Theme toggle ── */
+    body.light .theme-toggle-btn { background:#fff; border-color:#c0c0cc; color:#5a6070; }
+    body.light .theme-toggle-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
+
+    /* ── Education card inline label tags (course chips) ── */
+    body.light .edu-chip-accent { background:#fff7ed; border-color:#fed7aa; color:#c2410c; }
+    body.light .edu-chip-muted  { background:#f0f0f5; border-color:#c8c8d8; color:#5a6070; }
+    body.light .edu-chip-indigo { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+    body.light .edu-chip-pink   { background:#fdf2f8; border-color:#f5d0fe; color:#9d174d; }
+    body.light .edu-chip-amber  { background:#fffbeb; border-color:#fde68a; color:#92400e; }
+
+    /* ── "In Progress" / "Completed" badges in edu cards ── */
+    body.light .edu-status-green { background:#f0fdf4; border-color:#86efac; color:#15803d; }
+    body.light .edu-status-indigo { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+    body.light .edu-status-amber  { background:#fffbeb; border-color:#fde68a; color:#92400e; }
+    body.light .edu-status-pink   { background:#fdf2f8; border-color:#f5d0fe; color:#9d174d; }
+
+    /* ── School name label ── */
+    .edu-school-name {
+      font-size: 12px; font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .04em;
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .edu-school-name svg { opacity: .6; flex-shrink: 0; }
+
+    /* ── Theme Toggle Button ── */
+    .theme-toggle-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .25s;
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Achievement Sub-Tabs (inside edu cards) ── */
+    .edu-achievements {
+      margin-top: 18px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+    .edu-ach-tab-bar {
+      display: flex; gap: 4px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .edu-ach-tab-btn {
+      padding: 4px 12px; border-radius: 999px;
+      font-size: 11px; font-weight: 600; letter-spacing: .04em;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--muted); cursor: pointer; transition: all .2s;
+      white-space: nowrap;
+    }
+    .edu-ach-tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .edu-ach-tab-btn.active {
+      background: rgba(110,231,183,.1); border-color: var(--accent); color: var(--accent);
+    }
+    .edu-ach-panel { display: none; animation: fadeSlideIn .2s ease; }
+    .edu-ach-panel.active { display: block; }
+    .edu-ach-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 12px; border-radius: 10px;
+      background: var(--surface2); border: 1px solid var(--border);
+      margin-bottom: 8px; transition: border-color .2s;
+    }
+    .edu-ach-item:last-child { margin-bottom: 0; }
+    .edu-ach-item:hover { border-color: rgba(110,231,183,.3); }
+    .edu-ach-emoji {
+      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+      background: var(--border); display: flex; align-items: center;
+      justify-content: center; font-size: 18px;
+    }
+
+    /* ── Cert Tag Buttons ── */
+    .cert-tag-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); cursor: pointer; text-decoration: none;
+      transition: all .2s; white-space: nowrap;
+    }
+    .cert-tag-btn:hover {
+      border-color: var(--accent); color: var(--accent);
+      background: rgba(110,231,183,.07);
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 <body>
@@ -576,11 +851,16 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-6">
+    <div class="flex items-center gap-3">
       <div class="avail-pill">
         <span class="status-dot" style="width:6px;height:6px;"></span>
         Open to Work
       </div>
+      <!-- Light / Dark theme toggle -->
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light / dark theme">
+        <svg id="iconMoon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <button class="cta-primary" style="padding:8px 18px;font-size:12px;" onclick="openContactModal()">Hire Me</button>
     </div>
   </div>
@@ -601,28 +881,27 @@
         <div class="flex items-center gap-4 mb-6">
           <div class="avatar-ring">VT</div>
           <div>
-            <div style="font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em;">COMPUTER SCIENCE STUDENT</div>
+            <div class="cs-student-label" style="font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em;">COMPUTER SCIENCE STUDENT</div>
+            <div style="font-size:13px;color:var(--text);">Ian De Guzman</div>
             <div style="font-size:13px;color:var(--text);">Age 20 · Philippines</div>
           </div>
         </div>
 
         <h1 style="font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.05;margin-bottom:20px;">
           <span class="gradient-name">VanzTyl</span><br>
-          <span style="color:var(--text);font-size:clamp(1.4rem,3vw,2rem);font-weight:600;">AI & Cloud Focused<br>Developer</span>
+          <span style="color:var(--text);font-size:clamp(1.4rem,3vw,2rem);font-weight:600;">Full Stack Developer</span>
         </h1>
 
-        <p style="color:var(--muted);line-height:1.7;font-size:15px;max-width:460px;margin-bottom:24px;">
+        <p style="color:var(--muted);line-height:1.7;font-size:12px;max-width:460px;margin-bottom:24px;">
           BS Computer Science student specializing in <span style="color:var(--accent);">AI & Cloud Computing</span>.
-          Passionate about machine learning, data science, and building intelligent systems.
-          Currently open for commissions, part-time contracts, and full-time remote roles.
         </p>
 
         <!-- Interest tags -->
         <div class="flex flex-wrap gap-2 mb-8">
-          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);">AI / Machine Learning</span>
-          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;">Data Science</span>
-          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;">Deep Learning</span>
-          <span style="padding:4px 12px;border-radius:999px;font-size:11px;font-weight:600;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;">Cloud Computing</span>
+            <span class="interest-tag-ai">AI / Machine Learning</span>
+            <span class="interest-tag-data">Data Science</span>
+            <span class="interest-tag-dl">Deep Learning</span>
+            <span class="interest-tag-cloud">Cloud Computing</span>
         </div>
 
         <!-- CTA Buttons -->
@@ -657,17 +936,14 @@
           </div>
         </div>
         <div class="stat-card">
-          <div class="section-label">Currently Enrolled At</div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">CIIT College of Innovative and Integrated Technology</div>
+          <div class="section-label">Current Occupation</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);">CS Student with Specialization in Data Science & AI</div>
           <br>
-          <div class="section-label">Taking</div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">Bachelor in Computer Science</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">AI & Cloud Computing</div>
         </div>
         <div class="stat-card">
           <div class="section-label">Focus Areas</div>
-          <div style="font-size:14px;font-weight:600;color:var(--text);">Machine Learning / Deep Learning</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Data Science & AI</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);">Machine Learning / Data Science</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Deep Learning & AI</div>
         </div>
         <div class="stat-card col-span-2">
           <div class="section-label">Quick Reach</div>
@@ -841,10 +1117,9 @@
       <p style="font-size:14px;color:var(--muted);margin-top:6px;">From classroom to cloud — tracing the path that shaped my passion for AI.</p>
     </div>
 
-    <!-- Research interests sidebar above timeline on mobile, beside on lg -->
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-      <!-- Zigzag Timeline -->
+      <!-- ── Zigzag Timeline ── -->
       <div class="lg:col-span-3">
         <div class="edu-timeline" id="eduTimeline">
           <div class="edu-timeline-line"></div>
@@ -852,20 +1127,65 @@
           <!-- ① College — from LEFT -->
           <div class="edu-zig-item from-left">
             <div class="edu-zig-card">
+              <!-- School name -->
+              <div class="edu-school-name">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Polytechnic University of the Philippines
+              </div>
               <div class="edu-year-badge">2022 – Present</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div style="font-size:16px;font-weight:800;color:var(--text);">Bachelor of Science in Computer Science</div>
-                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);white-space:nowrap;">In Progress</span>
+                <span class="edu-status-green" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);white-space:nowrap;">In Progress</span>
               </div>
-              <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;">Specialization: AI & Cloud Computing</div>
+              <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;">Specialization: AI &amp; Cloud Computing</div>
               <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Pursuing BSCS with a deep-dive into Artificial Intelligence and Cloud Computing. Coursework covers machine learning, neural networks, distributed systems, cloud architecture, and data engineering.</p>
               <div class="flex flex-wrap gap-2">
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Machine Learning</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Deep Learning</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Data Structures</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Cloud Arch.</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Algorithms</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">DB Systems</span>
+                <span class="edu-chip-accent" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Machine Learning</span>
+                <span class="edu-chip-accent" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Deep Learning</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Data Structures</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Cloud Arch.</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Algorithms</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">DB Systems</span>
+              </div>
+
+              <!-- Achievements -->
+              <div class="edu-achievements">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
+                <div class="edu-ach-tab-bar">
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'col-ach-0')">Dean's List</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'col-ach-1')">AI Hackathon</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'col-ach-2')">Research Paper</button>
+                </div>
+                <div class="edu-ach-panel active" id="col-ach-0">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">🏆</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Dean's Lister — 2nd Year</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">S.Y. 2023–2024 · 1st Semester</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Earned Dean's Lister recognition with a GWA in the top 10% of the BSCS program for demonstrating outstanding academic performance.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="col-ach-1">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">💻</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">2nd Place — PUP AI Hackathon 2024</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">March 2024 · 24-Hour Competition</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Built an AI-powered document summarization tool using RAG + LangChain in 24 hours. Placed 2nd among 32 competing teams.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="col-ach-2">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">📄</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Co-Author — NLP Research Paper</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">November 2023 · Regional Academic Conference</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Co-authored a research paper on sentiment analysis for low-resource Filipino language datasets, submitted to a regional CS conference.</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="edu-zig-node" style="border-color:rgba(110,231,183,.4);color:var(--accent);">🎓</div>
@@ -874,18 +1194,63 @@
           <!-- ② Senior High — from RIGHT -->
           <div class="edu-zig-item from-right">
             <div class="edu-zig-card">
+              <!-- School name -->
+              <div class="edu-school-name">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Marikina Science High School
+              </div>
               <div class="edu-year-badge">2020 – 2022</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div style="font-size:16px;font-weight:800;color:var(--text);">Senior High School</div>
-                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;white-space:nowrap;">Completed</span>
+                <span class="edu-status-indigo" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;white-space:nowrap;">Completed</span>
               </div>
-              <div style="font-size:13px;color:#a5b4fc;font-weight:600;margin-bottom:10px;">STEM Strand — Science, Technology, Engineering & Mathematics</div>
+              <div style="font-size:13px;color:#a5b4fc;font-weight:600;margin-bottom:10px;">STEM Strand — Science, Technology, Engineering &amp; Mathematics</div>
               <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Completed senior high school under the STEM strand, building a strong mathematical and scientific foundation — and my first taste of programming — that pointed me straight toward a CS degree.</p>
               <div class="flex flex-wrap gap-2">
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Physics</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Advanced Math</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Computer Science Intro</span>
-                <span style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Research Methods</span>
+                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Physics</span>
+                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Advanced Math</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Computer Science Intro</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Research Methods</span>
+              </div>
+
+              <!-- Achievements -->
+              <div class="edu-achievements">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
+                <div class="edu-ach-tab-bar">
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'shs-ach-0')">With Honors</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'shs-ach-1')">Science Expo</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'shs-ach-2')">Math Contest</button>
+                </div>
+                <div class="edu-ach-panel active" id="shs-ach-0">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">🎖️</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Graduated With High Honors</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">June 2022 · Graduation Ceremony</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Graduated with High Honors from the STEM strand, maintaining a consistent GWA of 93+ across all semesters in Senior High School.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="shs-ach-1">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">🔬</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Best Research — School Science Expo</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">February 2022 · Marikina Science High School</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Led a team that won Best Research Paper at the school Science Expo for a study on low-cost environmental sensors built with Arduino and Python.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="shs-ach-2">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">📐</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">3rd Place — Regional Math Olympiad</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">October 2021 · Regional Competition</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Placed 3rd in the Division-level Math Olympiad, competing against STEM students across multiple schools in the National Capital Region.</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="edu-zig-node" style="border-color:rgba(99,102,241,.4);color:#a5b4fc;">📐</div>
@@ -894,13 +1259,58 @@
           <!-- ③ Junior High — from LEFT -->
           <div class="edu-zig-item from-left">
             <div class="edu-zig-card">
+              <!-- School name -->
+              <div class="edu-school-name">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Kalayaan National High School
+              </div>
               <div class="edu-year-badge">2016 – 2020</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div style="font-size:16px;font-weight:800;color:var(--text);">Junior High School</div>
-                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;white-space:nowrap;">Completed</span>
+                <span class="edu-status-amber" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;white-space:nowrap;">Completed</span>
               </div>
               <div style="font-size:13px;color:#fdba74;font-weight:600;margin-bottom:10px;">Grades 7 – 10 · K-12 Program</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;">Developed logical thinking and problem-solving skills through mathematics, science, and early technology subjects. Discovered a strong inclination toward science and logical reasoning.</p>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Developed logical thinking and problem-solving skills through mathematics, science, and early technology subjects. Discovered a strong inclination toward science and logical reasoning.</p>
+
+              <!-- Achievements -->
+              <div class="edu-achievements">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
+                <div class="edu-ach-tab-bar">
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'jhs-ach-0')">Top 10 Ranking</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'jhs-ach-1')">School Paper</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'jhs-ach-2')">Tech Club</button>
+                </div>
+                <div class="edu-ach-panel active" id="jhs-ach-0">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">⭐</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Consistent Top 10 Student</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2016 – 2020 · All School Years</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Maintained a consistent top-10 ranking throughout all four years of Junior High School, with particular excellence in Mathematics and Integrated Science.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="jhs-ach-1">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">📰</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Campus Journalist — School Paper</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2018 – 2020 · Kalayaan NHS Tribune</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Served as a junior correspondent for the school newspaper, covering technology and science features for the student body.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="jhs-ach-2">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">🤖</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Founder — Science &amp; Tech Club</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2019 – 2020 · Grade 10</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Co-founded the school's first Science and Technology club, organizing weekly workshops on basic electronics, robotics, and programming fundamentals.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="edu-zig-node" style="border-color:rgba(249,115,22,.4);color:#fdba74;">📚</div>
           </div>
@@ -908,13 +1318,47 @@
           <!-- ④ Elementary — from RIGHT -->
           <div class="edu-zig-item from-right">
             <div class="edu-zig-card">
+              <!-- School name -->
+              <div class="edu-school-name">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Kalayaan Elementary School
+              </div>
               <div class="edu-year-badge">2010 – 2016</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div style="font-size:16px;font-weight:800;color:var(--text);">Elementary School</div>
-                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;white-space:nowrap;">Completed</span>
+                <span class="edu-status-pink" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;white-space:nowrap;">Completed</span>
               </div>
               <div style="font-size:13px;color:#f9a8d4;font-weight:600;margin-bottom:10px;">Grades 1 – 6 · Foundation Years</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;">The beginning of the journey. Built core literacy, numeracy, and a genuine curiosity for how things work — the spark that eventually ignited an AI obsession.</p>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">The beginning of the journey. Built core literacy, numeracy, and a genuine curiosity for how things work — the spark that eventually ignited an AI obsession.</p>
+
+              <!-- Achievements -->
+              <div class="edu-achievements">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
+                <div class="edu-ach-tab-bar">
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'elem-ach-0')">Best in Math</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'elem-ach-1')">Leadership</button>
+                </div>
+                <div class="edu-ach-panel active" id="elem-ach-0">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">🌟</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Best in Mathematics Award</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">June 2016 · Grade 6 Graduation</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Recognized at graduation for outstanding performance in Mathematics throughout all six years of elementary school — the earliest sign of an analytical mind.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="edu-ach-panel" id="elem-ach-1">
+                  <div class="edu-ach-item">
+                    <div class="edu-ach-emoji">👑</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Class President — Grades 5 &amp; 6</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2014 – 2016 · Student Government</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Elected Class President for two consecutive years, demonstrating early leadership, communication, and organizational skills among peers.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="edu-zig-node" style="border-color:rgba(236,72,153,.4);color:#f9a8d4;">✏️</div>
           </div>
@@ -922,8 +1366,20 @@
         </div>
       </div>
 
-      <!-- Right sidebar -->
+      <!-- ── Right Sidebar ── -->
       <div class="flex flex-col gap-4">
+        <div class="stat-card">
+          <div class="section-label">Academic Status</div>
+          <div style="font-size:28px;font-weight:800;color:var(--accent);">Year 3</div>
+          <div style="font-size:12px;color:var(--muted);">of 4-Year Program</div>
+          <div style="margin-top:10px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:var(--text);">Program Completion</span><span style="font-size:12px;color:var(--accent);">75%</span></div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+          </div>
+          <div style="margin-top:10px;font-size:13px;color:var(--text);">Ian De Guzman · Age 20</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:3px;">BSCS · AI &amp; Cloud Computing</div>
+        </div>
+
         <div class="stat-card">
           <div class="section-label">Research Interests</div>
           <div class="flex flex-col gap-3 mt-2">
@@ -951,20 +1407,25 @@
         </div>
 
         <div class="stat-card">
-          <div class="section-label">Student Snapshot</div>
-          <div style="font-size:28px;font-weight:800;color:var(--accent);">Year 3</div>
-          <div style="font-size:12px;color:var(--muted);">of 4-Year Program</div>
-          <div style="margin-top:12px;font-size:13px;color:var(--text);">Age 20 · Philippines</div>
-          <div style="font-size:13px;color:var(--muted);margin-top:4px;">BSCS · AI & Cloud</div>
-        </div>
-
-        <div class="stat-card">
           <div class="section-label">Certifications</div>
-          <div class="flex flex-col gap-3" style="margin-top:4px;">
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:var(--accent);margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">ML Specialization <span style="color:var(--muted);">· DeepLearning.AI</span></span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#a5b4fc;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">AWS Cloud Practitioner <span style="color:var(--muted);">· AWS</span></span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#fdba74;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">Deep Learning PyTorch <span style="color:var(--muted);">· Udemy</span></span></div>
-            <div style="display:flex;align-items:flex-start;gap:8px;"><span style="color:#f9a8d4;margin-top:2px;">◆</span><span style="font-size:12px;color:var(--text);">Data Science Python <span style="color:var(--muted);">· DataCamp</span></span></div>
+          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Click any cert to verify credential</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://coursera.org/verify/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              ML Specialization <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
+            </a>
+            <a href="https://aws.amazon.com/verification/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              AWS Cloud Practitioner <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
+            </a>
+            <a href="https://udemy.com/certificate/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Deep Learning PyTorch <span style="font-size:10px;color:var(--muted);margin-left:2px;">2024</span>
+            </a>
+            <a href="https://datacamp.com/certificate/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Data Science Python <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1462,6 +1923,35 @@
       document.body.style.overflow='';
     }
   });
+
+  // ══════════════════════ THEME TOGGLE ══════════════════════
+  function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('light');
+    const isLight = body.classList.contains('light');
+    document.getElementById('iconMoon').style.display = isLight ? 'none' : '';
+    document.getElementById('iconSun').style.display  = isLight ? '' : 'none';
+    localStorage.setItem('vt-theme', isLight ? 'light' : 'dark');
+  }
+  // Restore saved preference immediately
+  (function() {
+    if (localStorage.getItem('vt-theme') === 'light') {
+      document.body.classList.add('light');
+      const m = document.getElementById('iconMoon');
+      const s = document.getElementById('iconSun');
+      if (m) m.style.display = 'none';
+      if (s) s.style.display = '';
+    }
+  })();
+
+  // ══════════════════════ EDU ACHIEVEMENT TABS ══════════════════════
+  function switchEduAch(btn, panelId) {
+    const container = btn.closest('.edu-achievements');
+    container.querySelectorAll('.edu-ach-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    container.querySelectorAll('.edu-ach-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(panelId).classList.add('active');
+  }
 
   // ══════════════════════ INIT ══════════════════════
   window.addEventListener('load',()=>{
