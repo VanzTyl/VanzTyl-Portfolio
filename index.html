@@ -1585,7 +1585,7 @@
     const message=(document.getElementById('cmMessage')||{value:''}).value.trim();
     if(!name||!email||!message){showToast('⚠ Please fill in all required fields.',true);return;}
     if(!email.includes('@')){showToast('⚠ Please enter a valid email address.',true);return;}
-    const mailto=`mailto:dg.christianleonard@gmail.com?subject=${encodeURIComponent(subject||'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
+    const mailto=`mailto:vanztyl.dev@gmail.com?subject=${encodeURIComponent(subject||'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
     window.location.href=mailto;
     showToast('Opening your mail client...');
     setTimeout(()=>{document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';},500);
