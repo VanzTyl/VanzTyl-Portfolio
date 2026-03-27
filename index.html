@@ -31,16 +31,13 @@
       min-height: 100vh;
     }
 
-    /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-    /* ── Selection ── */
     ::selection { background: rgba(110,231,183,.2); color: var(--accent); }
 
-    /* ── Noise overlay ── */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -48,7 +45,6 @@
       pointer-events: none; z-index: 0; opacity: .4;
     }
 
-    /* ── Glow blobs ── */
     .glow-blob {
       position: fixed; border-radius: 50%;
       filter: blur(120px); pointer-events: none; z-index: 0;
@@ -59,7 +55,6 @@
       50% { transform: translateY(-20px) scale(1.05); }
     }
 
-    /* ── Nav ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       backdrop-filter: blur(20px);
@@ -67,7 +62,6 @@
       background: rgba(10,10,15,.85);
     }
 
-    /* ── Hero ── */
     .hero-section { min-height: 100vh; position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
@@ -118,7 +112,6 @@
     }
     .stat-card:hover { border-color: rgba(110,231,183,.3); }
 
-    /* ── PGR-style Tab Bar ── */
     .tab-container { position: relative; z-index: 1; }
 
     .tab-bar {
@@ -144,7 +137,6 @@
     .tab-btn:hover { color: var(--text); }
     .tab-btn.active { color: var(--accent); }
 
-    /* PGR sliding indicator */
     .tab-indicator {
       position: absolute;
       bottom: -1px; height: 2px;
@@ -153,7 +145,6 @@
       box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(110,231,183,.4);
     }
 
-    /* PGR-style top glow on active tab */
     .tab-btn.active::before {
       content: '';
       position: absolute;
@@ -162,7 +153,6 @@
       opacity: .6;
     }
 
-    /* Tab content panels */
     .tab-panel {
       display: none;
       animation: fadeSlideIn .35s cubic-bezier(.4,0,.2,1);
@@ -173,14 +163,13 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Cards ── */
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 24px;
       transition: all .25s;
-      cursor: default;
+      cursor: pointer;
     }
     .project-card:hover {
       border-color: rgba(110,231,183,.3);
@@ -207,7 +196,6 @@
       color: #fdba74;
     }
 
-    /* ── Tag Filter ── */
     .filter-tag {
       padding: 6px 16px; border-radius: 999px;
       font-size: 12px; font-weight: 500;
@@ -225,7 +213,6 @@
       color: var(--accent);
     }
 
-    /* ── Education timeline ── */
     .edu-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -236,7 +223,6 @@
     }
     .edu-card:hover { border-left-color: var(--accent2); box-shadow: 0 4px 20px rgba(0,0,0,.3); }
 
-    /* ── Resume ── */
     .resume-section-title {
       font-size: 11px; font-weight: 600; letter-spacing: .12em;
       text-transform: uppercase; color: var(--accent);
@@ -264,7 +250,6 @@
       box-shadow: 0 0 8px rgba(110,231,183,.4);
     }
 
-    /* ── Email form ── */
     .email-input {
       width: 100%;
       background: var(--surface);
@@ -284,7 +269,6 @@
     .email-input::placeholder { color: var(--muted); }
     textarea.email-input { resize: vertical; min-height: 120px; }
 
-    /* ── Social icons ── */
     .social-btn {
       display: flex; align-items: center; justify-content: center;
       width: 40px; height: 40px;
@@ -301,18 +285,15 @@
       background: rgba(110,231,183,.06);
     }
 
-    /* ── Section heading ── */
     .section-label {
       font-size: 11px; font-weight: 600; letter-spacing: .12em;
       text-transform: uppercase; color: var(--accent);
       margin-bottom: 8px;
     }
 
-    /* ── Responsive tab scroll ── */
     .tab-bar-scroll { overflow-x: auto; scrollbar-width: none; }
     .tab-bar-scroll::-webkit-scrollbar { display: none; }
 
-    /* ── Avatar placeholder ── */
     .avatar-ring {
       width: 100px; height: 100px; border-radius: 50%;
       border: 2px solid rgba(110,231,183,.3);
@@ -328,7 +309,6 @@
       border: 1px solid rgba(110,231,183,.12);
     }
 
-    /* ── Availability badge ── */
     .avail-pill {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 500; color: #22c55e;
@@ -338,13 +318,8 @@
       padding: 3px 12px;
     }
 
-    /* ── Hidden project cards ── */
     .project-card[data-hidden="true"] { display: none; }
 
-    /* ── Project card clickable ── */
-    .project-card { cursor: pointer; }
-
-    /* ── Nav tabs ── */
     .nav-tab-group {
       display: flex; align-items: center; gap: 2px;
       transition: all .3s cubic-bezier(.4,0,.2,1);
@@ -382,7 +357,6 @@
     .nav-center-slot.hidden { opacity: 0; pointer-events: none; transform: translateY(-4px); }
     .nav-center-slot.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
 
-    /* ── Education Zigzag Timeline ── */
     .edu-timeline { position: relative; padding: 20px 0; }
     .edu-timeline-line {
       position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
@@ -431,8 +405,6 @@
       border: 1px solid transparent;
       transition: border-color .3s;
     }
-    .edu-zig-card:hover ~ .edu-zig-node::after,
-    .edu-zig-node:hover::after { border-color: rgba(110,231,183,.4); }
     .edu-year-badge {
       display: inline-flex; align-items: center;
       font-size: 11px; font-weight: 600; letter-spacing: .07em;
@@ -443,7 +415,6 @@
       padding: 2px 10px; margin-bottom: 10px;
     }
 
-    /* ── Project Modal ── */
     .modal-backdrop {
       position: fixed; inset: 0; z-index: 500;
       background: rgba(0,0,0,.75);
@@ -511,7 +482,6 @@
     .like-btn.liked .like-heart { transform: scale(1.3); }
     .like-heart { display: inline-block; transition: transform .2s cubic-bezier(.34,1.4,.64,1); }
 
-    /* ── Contact Modal ── */
     .contact-modal-box {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -524,7 +494,6 @@
     }
     .modal-backdrop.open .contact-modal-box { transform: scale(1) translateY(0); opacity: 1; }
 
-    /* ── Toast ── */
     .toast {
       position: fixed; bottom: 24px; right: 24px; z-index: 999;
       background: var(--surface); border: 1px solid rgba(110,231,183,.3);
@@ -537,9 +506,6 @@
     }
     .toast.show { transform: translateY(0); opacity: 1; }
 
-    /* ══════════════════════════════════════════
-       LIGHT THEME
-    ══════════════════════════════════════════ */
     body.light {
       --accent:   #f97316;
       --accent2:  #ea580c;
@@ -552,116 +518,54 @@
       --tag-bg:   #e0e0ea;
     }
 
-    /* ── Nav ── */
-    body.light nav {
-      background: rgba(240,240,245,.94);
-      border-bottom: 1px solid #c0c0cc;
-    }
-
-    /* ── Tab bar ── */
+    body.light nav { background: rgba(240,240,245,.94); border-bottom: 1px solid #c0c0cc; }
     body.light .tab-bar { background: var(--bg); border-bottom-color: #b8b8c8; }
-    body.light .tab-indicator {
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      box-shadow: 0 0 12px rgba(249,115,22,.6), 0 0 24px rgba(249,115,22,.3);
-    }
+    body.light .tab-indicator { background: linear-gradient(90deg, transparent, var(--accent), transparent); box-shadow: 0 0 12px rgba(249,115,22,.6), 0 0 24px rgba(249,115,22,.3); }
     body.light .tab-btn.active { color: var(--accent); }
-    body.light .tab-btn.active::before {
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    }
+    body.light .tab-btn.active::before { background: linear-gradient(90deg, transparent, var(--accent), transparent); }
     body.light .tab-btn:hover { color: var(--accent2); }
-
-    /* ── Scrollbar ── */
     body.light ::-webkit-scrollbar-track { background: var(--bg); }
     body.light ::-webkit-scrollbar-thumb { background: #b0b0c4; }
     body.light ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-    /* ── Selection ── */
     body.light ::selection { background: rgba(249,115,22,.15); color: var(--accent2); }
-
-    /* ── Glow blobs (light-adjusted) ── */
     body.light .glow-blob { opacity: 0; }
-
-    /* ── Gradient name ── */
-    body.light .gradient-name {
-      background: linear-gradient(135deg, #0f0f14 0%, var(--accent) 55%, var(--accent2) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-
-    /* ── Avatar: white bg, orange text ── */
-    body.light .avatar-ring {
-      background: #fff;
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(249,115,22,.12);
-    }
+    body.light .gradient-name { background: linear-gradient(135deg, #0f0f14 0%, var(--accent) 55%, var(--accent2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    body.light .avatar-ring { background: #fff; border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 3px rgba(249,115,22,.12); }
     body.light .avatar-ring::after { border-color: rgba(249,115,22,.2); }
-
-    /* ── Hero badge: keep green (same as dark) ── */
-    body.light .hero-badge {
-      background: rgba(34,197,94,.08);
-      border-color: rgba(34,197,94,.25);
-      color: #16a34a;
-    }
+    body.light .hero-badge { background: rgba(34,197,94,.08); border-color: rgba(34,197,94,.25); color: #16a34a; }
     body.light .hero-badge span { background: #16a34a; }
-
-    /* ── "COMPUTER SCIENCE STUDENT" label → orange accent ── */
     body.light .cs-student-label { color: var(--accent) !important; font-weight: 700; }
 
-    /* --- Base Tag Styles (place this before the light theme section) --- */
-    [class^="interest-tag-"] {
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    border: 1px solid; /* Border width defined here */
-    }
-
-    /* --- Dark Theme Colors (Default) --- */
+    [class^="interest-tag-"] { padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 1px solid; }
     .interest-tag-ai    { background: rgba(110,231,183,.08); border-color: rgba(110,231,183,.2); color: var(--accent); }
     .interest-tag-data  { background: rgba(99,102,241,.08);  border-color: rgba(99,102,241,.2);  color: #a5b4fc; }
     .interest-tag-dl    { background: rgba(249,115,22,.08);  border-color: rgba(249,115,22,.2);  color: #fdba74; }
     .interest-tag-cloud { background: rgba(236,72,153,.08);  border-color: rgba(236,72,153,.2);  color: #f9a8d4; }
+    .interest-tag-web   { background: rgba(20,184,166,.08);  border-color: rgba(20,184,166,.2);  color: #5eead4; }
 
-    /* --- Updated Light Theme Colors (Vibrant/High Contrast) --- */
-    body.light .interest-tag-ai    { background: #fee2e2; border-color: #fca5a5; color: #991b1b; } /* Deep Red/Rose */
-    body.light .interest-tag-data  { background: #e0f2fe; border-color: #7dd3fc; color: #075985; } /* Rich Blue */
-    body.light .interest-tag-dl    { background: #fef3c7; border-color: #fcd34d; color: #92400e; } /* Amber/Gold */
-    body.light .interest-tag-cloud { background: #f0fdf4; border-color: #86efac; color: #166534; } /* Forest Green */
+    body.light .interest-tag-ai    { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+    body.light .interest-tag-data  { background: #e0f2fe; border-color: #7dd3fc; color: #075985; }
+    body.light .interest-tag-dl    { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+    body.light .interest-tag-cloud { background: #f0fdf4; border-color: #86efac; color: #166534; }
+    body.light .interest-tag-web   { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
 
-    /* ── Project card tags — light-theme palette ── */
     body.light .project-card .tag      { background:#fff7ed; border-color:#fed7aa; color:#c2410c; }
     body.light .project-card .tag.lang { background:#eff6ff; border-color:#bfdbfe; color:#1e40af; }
     body.light .project-card .tag.type { background:#fdf4ff; border-color:#e9d5ff; color:#7e22ce; }
-
-    /* ── Filter tags ── */
     body.light .filter-tag { background:#fff; border-color:#c8c8d8; color:#5a6070; }
     body.light .filter-tag:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
     body.light .filter-tag.active { background:#fff7ed; border-color:var(--accent); color:var(--accent); box-shadow:0 0 8px rgba(249,115,22,.2); }
-
-    /* ── Section-label (accent) ── */
     body.light .section-label { color: var(--accent); }
     body.light .resume-section-title { color: var(--accent); }
-
-    /* ── Avail pills ── */
     body.light .avail-pill { color:#15803d; background:rgba(22,163,74,.07); border-color:rgba(22,163,74,.25); }
-
-    /* ── CTA Primary: orange bg, white text, orange glow on hover ── */
     body.light .cta-primary { background:var(--accent); color:#fff; border:1px solid var(--accent); }
     body.light .cta-primary:hover { background:var(--accent2); border-color:var(--accent2); box-shadow:0 8px 28px rgba(249,115,22,.45); }
-
-    /* ── CTA Secondary: orange border+text, orange glow hover ── */
     body.light .cta-secondary { border-color:#f9a87a; color:var(--accent); }
     body.light .cta-secondary:hover { border-color:var(--accent); color:var(--accent2); background:#fff7ed; box-shadow:0 0 0 3px rgba(249,115,22,.12); }
-
-    /* ── Social buttons ── */
     body.light .social-btn { border-color:#c8c8d8; color:#5a6070; background:#fff; }
     body.light .social-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
-
-    /* ── Stat cards — stronger greyscale border ── */
     body.light .stat-card { background:#fff; border:1px solid #b8b8cc; box-shadow:0 1px 6px rgba(0,0,0,.06); }
     body.light .stat-card:hover { border-color:#f97316; box-shadow:0 4px 20px rgba(249,115,22,.12); }
-
-    /* ── Modal backdrops ── */
     body.light .modal-backdrop { background: rgba(30,30,50,.45); }
     body.light .modal-box { background:#fff; border:2px solid #9090a8; box-shadow:0 20px 60px rgba(0,0,0,.18); }
     body.light .contact-modal-box { background:#fff; border:2px solid #9090a8; box-shadow:0 20px 60px rgba(0,0,0,.18); }
@@ -669,118 +573,71 @@
     body.light .modal-tab-btn { color:#5a6070; }
     body.light .modal-tab-btn:hover { color:var(--accent); }
     body.light .modal-tab-btn.active { color:var(--accent); }
-    body.light .modal-tab-btn.active::after {
-      background:linear-gradient(90deg,transparent,var(--accent),transparent);
-      box-shadow:0 0 8px rgba(249,115,22,.4);
-    }
+    body.light .modal-tab-btn.active::after { background:linear-gradient(90deg,transparent,var(--accent),transparent); box-shadow:0 0 8px rgba(249,115,22,.4); }
     body.light .modal-inner { background:#fff; }
-
-    /* ── Like button ── */
     body.light .like-btn { background:#f5f5fa; border-color:#c0c0cc; color:#5a6070; }
     body.light .like-btn:hover, body.light .like-btn.liked { border-color:rgba(239,68,68,.5); color:#dc2626; background:#fff5f5; }
-
-    /* ── Resume items ── */
     body.light .resume-item { border-left-color:#c0c0d0; }
     body.light .resume-item::before { background:var(--accent); box-shadow:0 0 8px rgba(249,115,22,.5); }
-
-    /* ── Skill bars ── */
     body.light .skill-bar-wrap { background:#dde0ea; }
     body.light .skill-bar { background:linear-gradient(90deg,var(--accent2),var(--accent)); box-shadow:0 0 8px rgba(249,115,22,.35); }
-
-    /* ── Email inputs ── */
     body.light .email-input { background:#fff; border-color:#b8b8cc; color:#0f0f14; }
     body.light .email-input::placeholder { color:#8090a0; }
     body.light .email-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(249,115,22,.12); }
-
-    /* ── Edu zigzag ── */
     body.light .edu-timeline-line { background:linear-gradient(to bottom,transparent,var(--accent),transparent); }
     body.light .edu-zig-card { background:#fff; border:1px solid #b8b8cc; box-shadow:0 2px 10px rgba(0,0,0,.05); }
     body.light .edu-zig-card:hover { border-color:var(--accent); box-shadow:0 8px 28px rgba(249,115,22,.15); }
     body.light .edu-zig-node { background:#f0f0f5; border-color:#c0c0d0; }
     body.light .edu-year-badge { background:#f0f0f5; border-color:#c0c0d0; color:#5a6070; }
-
-    /* ── Edu achievement sub-tabs ── */
     body.light .edu-achievements { border-top-color:#d0d0df; }
     body.light .edu-ach-tab-btn { background:#f0f0f5; border-color:#c0c0d0; color:#5a6070; }
     body.light .edu-ach-tab-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; }
     body.light .edu-ach-tab-btn.active { background:#fff7ed; border-color:var(--accent); color:var(--accent); box-shadow:0 0 6px rgba(249,115,22,.2); }
     body.light .edu-ach-item { background:#f8f8fc; border:1px solid #c8c8d8; }
     body.light .edu-ach-item:hover { border-color:rgba(249,115,22,.4); }
-
-    /* ── Cert tags ── */
     body.light .cert-tag-btn { background:#fff; border-color:#b8b8cc; color:#0f0f14; }
     body.light .cert-tag-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.12); }
-
-    /* ── Nav tab buttons ── */
     body.light .nav-tab-btn { color:#5a6070; }
     body.light .nav-tab-btn:hover { color:var(--accent); background:rgba(249,115,22,.06); }
     body.light .nav-tab-btn.active { color:var(--accent); background:#fff7ed; }
     body.light .nav-tab-btn.active::after { background:var(--accent); box-shadow:0 0 6px rgba(249,115,22,.4); }
     body.light .nav-scroll-up-btn { color:var(--accent); background:#fff7ed; border-color:#f9a87a; }
     body.light .nav-scroll-up-btn:hover { background:#ffedd5; box-shadow:0 0 12px rgba(249,115,22,.25); }
-
-    /* ── Theme toggle ── */
     body.light .theme-toggle-btn { background:#fff; border-color:#c0c0cc; color:#5a6070; }
     body.light .theme-toggle-btn:hover { border-color:var(--accent); color:var(--accent); background:#fff7ed; box-shadow:0 0 0 2px rgba(249,115,22,.1); }
-
-    /* ── Education card inline label tags (course chips) ── */
     body.light .edu-chip-accent { background:#fff7ed; border-color:#fed7aa; color:#c2410c; }
     body.light .edu-chip-muted  { background:#f0f0f5; border-color:#c8c8d8; color:#5a6070; }
     body.light .edu-chip-indigo { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
     body.light .edu-chip-pink   { background:#fdf2f8; border-color:#f5d0fe; color:#9d174d; }
     body.light .edu-chip-amber  { background:#fffbeb; border-color:#fde68a; color:#92400e; }
-
-    /* ── "In Progress" / "Completed" badges in edu cards ── */
     body.light .edu-status-green { background:#f0fdf4; border-color:#86efac; color:#15803d; }
     body.light .edu-status-indigo { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
     body.light .edu-status-amber  { background:#fffbeb; border-color:#fde68a; color:#92400e; }
     body.light .edu-status-pink   { background:#fdf2f8; border-color:#f5d0fe; color:#9d174d; }
 
-    /* ── School name label ── */
     .edu-school-name {
-      font-size: 12px; font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .04em;
-      margin-bottom: 6px;
-      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
     }
     .edu-school-name svg { opacity: .6; flex-shrink: 0; }
 
-    /* ── Theme Toggle Button ── */
     .theme-toggle-btn {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 34px; height: 34px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all .25s;
-      flex-shrink: 0;
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--surface2); color: var(--muted);
+      cursor: pointer; transition: all .25s; flex-shrink: 0;
     }
     .theme-toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── Achievement Sub-Tabs (inside edu cards) ── */
-    .edu-achievements {
-      margin-top: 18px;
-      border-top: 1px solid var(--border);
-      padding-top: 14px;
-    }
-    .edu-ach-tab-bar {
-      display: flex; gap: 4px; flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
+    .edu-achievements { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+    .edu-ach-tab-bar { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
     .edu-ach-tab-btn {
-      padding: 4px 12px; border-radius: 999px;
-      font-size: 11px; font-weight: 600; letter-spacing: .04em;
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--muted); cursor: pointer; transition: all .2s;
-      white-space: nowrap;
+      padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .04em;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; transition: all .2s; white-space: nowrap;
     }
     .edu-ach-tab-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .edu-ach-tab-btn.active {
-      background: rgba(110,231,183,.1); border-color: var(--accent); color: var(--accent);
-    }
+    .edu-ach-tab-btn.active { background: rgba(110,231,183,.1); border-color: var(--accent); color: var(--accent); }
     .edu-ach-panel { display: none; animation: fadeSlideIn .2s ease; }
     .edu-ach-panel.active { display: block; }
     .edu-ach-item {
@@ -791,50 +648,34 @@
     }
     .edu-ach-item:last-child { margin-bottom: 0; }
     .edu-ach-item:hover { border-color: rgba(110,231,183,.3); }
-    .edu-ach-emoji {
-      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
-      background: var(--border); display: flex; align-items: center;
-      justify-content: center; font-size: 18px;
-    }
+    .edu-ach-emoji { width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; }
 
-    /* ── Cert Tag Buttons ── */
     .cert-tag-btn {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 12px; border-radius: 999px;
-      font-size: 11px; font-weight: 600;
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text); cursor: pointer; text-decoration: none;
-      transition: all .2s; white-space: nowrap;
+      padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 600;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      cursor: pointer; text-decoration: none; transition: all .2s; white-space: nowrap;
     }
-    .cert-tag-btn:hover {
-      border-color: var(--accent); color: var(--accent);
-      background: rgba(110,231,183,.07);
-      transform: translateY(-1px);
-    }
+    .cert-tag-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(110,231,183,.07); transform: translateY(-1px); }
   </style>
 </head>
 <body>
 
-<!-- Glow blobs -->
 <div class="glow-blob" style="width:500px;height:500px;background:rgba(110,231,183,.04);top:-150px;right:-100px;"></div>
 <div class="glow-blob" style="width:400px;height:400px;background:rgba(99,102,241,.03);bottom:10%;left:-100px;animation-delay:3s;"></div>
 
-<!-- Toast -->
 <div class="toast" id="toast">
   <span style="color:var(--accent);">✓</span>
   <span id="toast-msg">Message sent successfully!</span>
 </div>
 
-<!-- ══════════════════════════ NAV ══════════════════════════ -->
+<!-- ══ NAV ══ -->
 <nav>
   <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
     <a href="#hero" style="font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;letter-spacing:.06em;">
       VanzTyl<span style="color:var(--muted);">_</span>
     </a>
-
-    <!-- Center slot: tabs or scroll-up, mutually exclusive -->
     <div style="position:absolute;left:50%;transform:translateX(-50%);">
-      <!-- Nav tab group (visible when tabs section NOT in view) -->
       <div class="nav-center-slot hidden" id="navTabGroup">
         <div class="nav-tab-group">
           <button class="nav-tab-btn active" data-nav-tab="projects" onclick="navTabClick(this,'projects')">Projects</button>
@@ -842,7 +683,6 @@
           <button class="nav-tab-btn" data-nav-tab="resume" onclick="navTabClick(this,'resume')">Resume</button>
         </div>
       </div>
-      <!-- Scroll back up (visible when tabs section IS in view) -->
       <div class="nav-center-slot hidden" id="navScrollUp">
         <button class="nav-scroll-up-btn" onclick="scrollToHero()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
@@ -850,13 +690,11 @@
         </button>
       </div>
     </div>
-
     <div class="flex items-center gap-3">
       <div class="avail-pill">
         <span class="status-dot" style="width:6px;height:6px;"></span>
         Open to Work
       </div>
-      <!-- Light / Dark theme toggle -->
       <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light / dark theme">
         <svg id="iconMoon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg id="iconSun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -866,12 +704,11 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<!-- ══ HERO ══ -->
 <section id="hero" class="hero-section flex items-center pt-14">
   <div class="max-w-6xl mx-auto px-6 py-6 w-full">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-      <!-- Left col -->
       <div>
         <div class="hero-badge mb-6">
           <span></span>
@@ -882,8 +719,8 @@
           <div class="avatar-ring">VT</div>
           <div>
             <div class="cs-student-label" style="font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em;">COMPUTER SCIENCE STUDENT</div>
-            <div style="font-size:13px;color:var(--text);">Ian De Guzman</div>
-            <div style="font-size:13px;color:var(--text);">Age 20 · Philippines</div>
+            <div style="font-size:13px;color:var(--text);">Christian Leonard E. De Guzman</div>
+            <div style="font-size:13px;color:var(--text);">Marikina City, Philippines</div>
           </div>
         </div>
 
@@ -892,19 +729,17 @@
           <span style="color:var(--text);font-size:clamp(1.4rem,3vw,2rem);font-weight:600;">Full Stack Developer</span>
         </h1>
 
-        <p style="color:var(--muted);line-height:1.7;font-size:12px;max-width:460px;margin-bottom:24px;">
-          BS Computer Science student specializing in <span style="color:var(--accent);">AI & Cloud Computing</span>.
+        <p style="color:var(--muted);line-height:1.7;font-size:12px;max-width:480px;margin-bottom:24px;">
+          BS Computer Science student specializing in <span style="color:var(--accent);">AI &amp; Cloud Computing</span> at CIIT. Experienced in front-end technologies and full-stack web development, with a growing interest in <span style="color:var(--accent);">machine learning and AI systems</span>.
         </p>
 
-        <!-- Interest tags -->
         <div class="flex flex-wrap gap-2 mb-8">
-            <span class="interest-tag-ai">AI / Machine Learning</span>
-            <span class="interest-tag-data">Data Science</span>
-            <span class="interest-tag-dl">Deep Learning</span>
-            <span class="interest-tag-cloud">Cloud Computing</span>
+          <span class="interest-tag-web">Full Stack Dev</span>
+          <span class="interest-tag-ai">AI / Machine Learning</span>
+          <span class="interest-tag-data">Data Science</span>
+          <span class="interest-tag-cloud">Cloud Computing</span>
         </div>
 
-        <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-3">
           <button onclick="openContactModal()" class="cta-primary">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
@@ -921,7 +756,7 @@
         </div>
       </div>
 
-      <!-- Right col — stat cards -->
+      <!-- Stat cards -->
       <div class="grid grid-cols-2 gap-4">
         <div class="stat-card col-span-2">
           <div class="section-label">Current Status</div>
@@ -937,13 +772,13 @@
         </div>
         <div class="stat-card">
           <div class="section-label">Current Occupation</div>
-          <div style="font-size:12px;font-weight:600;color:var(--text);">CS Student with Specialization in Data Science & AI</div>
-          <br>
+          <div style="font-size:12px;font-weight:600;color:var(--text);">BSCS — AI &amp; Cloud Computing</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">CIIT Colleges of Art &amp; Technology QC</div>
         </div>
         <div class="stat-card">
           <div class="section-label">Focus Areas</div>
-          <div style="font-size:12px;font-weight:600;color:var(--text);">Machine Learning / Data Science</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Deep Learning & AI</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);">Full Stack Web Development</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">AI / Cloud Computing</div>
         </div>
         <div class="stat-card col-span-2">
           <div class="section-label">Quick Reach</div>
@@ -951,11 +786,14 @@
             <button onclick="openContactModal()" class="social-btn" title="Email">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
             </button>
-            <a href="#" class="social-btn" title="GitHub" onclick="showToast('GitHub link coming soon!')">
+            <a href="https://github.com/VanzTyl" target="_blank" rel="noopener" class="social-btn" title="GitHub">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
             </a>
-            <a href="#" class="social-btn" title="LinkedIn" onclick="showToast('LinkedIn link coming soon!')">
+            <a href="https://www.linkedin.com/in/ian-de-guzman-2a9a452b4/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://vanztyl-dev.netlify.app" target="_blank" rel="noopener" class="social-btn" title="Portfolio">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </a>
           </div>
         </div>
@@ -964,225 +802,139 @@
   </div>
 </section>
 
-<!-- ══════════════════════════ MAIN TABS ══════════════════════════ -->
+<!-- ══ MAIN TABS ══ -->
 <section id="main-tabs" class="relative z-1 max-w-6xl mx-auto px-6 pb-24">
 
-  <!-- PGR-Style Tab Bar -->
   <div class="tab-bar-scroll">
     <div class="tab-bar tab-bar-inner" id="tabBar">
       <button class="tab-btn active" data-tab="projects" onclick="switchTab(this,'projects')">Projects</button>
       <button class="tab-btn" data-tab="education" onclick="switchTab(this,'education')">Education</button>
       <button class="tab-btn" data-tab="resume" onclick="switchTab(this,'resume')">Resume / CV</button>
-      <!-- PGR sliding indicator -->
       <div class="tab-indicator" id="tabIndicator"></div>
     </div>
   </div>
 
-  <!-- ─────────── PROJECTS ─────────── -->
+  <!-- ── PROJECTS ── -->
   <div class="tab-panel active py-10" id="panel-projects">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       <div>
         <div class="section-label">Portfolio</div>
         <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Projects</h2>
       </div>
-      <!-- Tag filters -->
       <div class="flex flex-wrap gap-2" id="tagFilters">
         <button class="filter-tag active" data-filter="all">All</button>
-        <button class="filter-tag" data-filter="AI">AI</button>
-        <button class="filter-tag" data-filter="ML">Machine Learning</button>
-        <button class="filter-tag" data-filter="Data">Data Science</button>
         <button class="filter-tag" data-filter="Web">Web Dev</button>
-        <button class="filter-tag" data-filter="Cloud">Cloud</button>
+        <button class="filter-tag" data-filter="PHP">PHP / MySQL</button>
+        <button class="filter-tag" data-filter="Mobile">Mobile</button>
+        <button class="filter-tag" data-filter="AI">AI / ML</button>
+        <button class="filter-tag" data-filter="Unity">Unity / C#</button>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="projectGrid">
 
-      <!-- Project cards -->
-      <div class="project-card" data-tags="AI,ML" data-project-id="0" onclick="openProjectModal(0)">
+      <!-- Latik Delights -->
+      <div class="project-card" data-tags="Web,PHP" data-project-id="0" onclick="openProjectModal(0)">
         <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <span class="tag type">AI</span>
-        </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Sentiment Analysis Engine</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">NLP model for real-time sentiment classification on social media text using transformer architecture.</p>
-        <div class="flex flex-wrap">
-          <span class="tag lang">Python</span>
-          <span class="tag lang">PyTorch</span>
-          <span class="tag lang">HuggingFace</span>
-          <span class="tag">ML</span>
-        </div>
-      </div>
-
-      <div class="project-card" data-tags="Data,ML" data-project-id="1" onclick="openProjectModal(1)">
-        <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <span class="tag type">Data Science</span>
-        </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Predictive Analytics Dashboard</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Interactive dashboard for visualizing ML model predictions and training metrics with real-time updates.</p>
-        <div class="flex flex-wrap">
-          <span class="tag lang">Python</span>
-          <span class="tag lang">Pandas</span>
-          <span class="tag lang">Streamlit</span>
-          <span class="tag">Data</span>
-        </div>
-      </div>
-
-      <div class="project-card" data-tags="Cloud,Web" data-project-id="2" onclick="openProjectModal(2)">
-        <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fdba74" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          </div>
-          <span class="tag type">Cloud</span>
-        </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Serverless ML API</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Deployed ML inference endpoint on AWS Lambda with auto-scaling and model versioning via S3.</p>
-        <div class="flex flex-wrap">
-          <span class="tag lang">Python</span>
-          <span class="tag lang">AWS</span>
-          <span class="tag lang">FastAPI</span>
-          <span class="tag">Cloud</span>
-        </div>
-      </div>
-
-      <div class="project-card" data-tags="AI,ML" data-project-id="3" onclick="openProjectModal(3)">
-        <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f9a8d4" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <span class="tag type">AI</span>
-        </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Conversational Chatbot</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Fine-tuned language model for domain-specific Q&A with retrieval-augmented generation (RAG).</p>
-        <div class="flex flex-wrap">
-          <span class="tag lang">Python</span>
-          <span class="tag lang">LangChain</span>
-          <span class="tag lang">OpenAI</span>
-          <span class="tag">AI</span>
-        </div>
-      </div>
-
-      <div class="project-card" data-tags="Web,Data" data-project-id="4" onclick="openProjectModal(4)">
-        <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(20,184,166,.08);border:1px solid rgba(20,184,166,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.15);display:flex;align-items:center;justify-content:center;font-size:20px;">🍡</div>
           <span class="tag type">Web Dev</span>
         </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Data Viz Portfolio App</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Full-stack web application for uploading CSV datasets and generating interactive charts on the fly.</p>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Latik Delights</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Web-based POS and inventory management system for a local delicacy business — sales recording, product management, and inventory monitoring via XAMPP/PHP/MySQL.</p>
         <div class="flex flex-wrap">
+          <span class="tag lang">HTML</span>
+          <span class="tag lang">CSS</span>
           <span class="tag lang">JavaScript</span>
-          <span class="tag lang">D3.js</span>
-          <span class="tag lang">Node.js</span>
-          <span class="tag">Data</span>
+          <span class="tag lang">PHP</span>
+          <span class="tag lang">MySQL</span>
           <span class="tag">Web</span>
+          <span class="tag">PHP</span>
         </div>
       </div>
 
-      <div class="project-card" data-tags="ML,Data" data-project-id="5" onclick="openProjectModal(5)">
+      <!-- NaviGuide -->
+      <div class="project-card" data-tags="Mobile,AI,Unity" data-project-id="1" onclick="openProjectModal(1)">
         <div class="flex items-start justify-between mb-3">
-          <div style="width:40px;height:40px;border-radius:10px;background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.15);display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4L7 11"/></svg>
-          </div>
-          <span class="tag type">Machine Learning</span>
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.15);display:flex;align-items:center;justify-content:center;font-size:20px;">✈️</div>
+          <span class="tag type">Mobile · AI</span>
         </div>
-        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">Stock Price Predictor</h3>
-        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">LSTM-based time-series model for short-term stock trend prediction with backtesting pipeline.</p>
+        <h3 style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;">NaviGuide</h3>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;">Android training app using Unity 3D and C# to help aeronautics students practice aircraft marshalling procedures with real-time MediaPipe gesture recognition.</p>
         <div class="flex flex-wrap">
-          <span class="tag lang">Python</span>
-          <span class="tag lang">TensorFlow</span>
-          <span class="tag lang">Keras</span>
-          <span class="tag">ML</span>
+          <span class="tag lang">Unity 3D</span>
+          <span class="tag lang">C#</span>
+          <span class="tag lang">MediaPipe</span>
+          <span class="tag lang">Android</span>
+          <span class="tag">Mobile</span>
+          <span class="tag">AI</span>
+          <span class="tag">Unity</span>
+        </div>
+      </div>
+
+      <!-- More coming -->
+      <div class="project-card" style="border-style:dashed;opacity:.5;cursor:default;" onclick="showToast('More projects coming soon!')">
+        <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;gap:12px;">
+          <div style="width:48px;height:48px;border-radius:50%;border:1px dashed var(--accent);display:flex;align-items:center;justify-content:center;font-size:22px;">+</div>
+          <div style="font-size:14px;font-weight:600;color:var(--text);">More Coming Soon</div>
+          <div style="font-size:12px;color:var(--muted);">New projects are in progress. Stay tuned!</div>
         </div>
       </div>
 
     </div>
 
     <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:24px;">
-      💡 Replace project data with your actual work — these are placeholder entries to showcase the layout.
+      🚀 Visit <a href="https://github.com/VanzTyl" target="_blank" style="color:var(--accent);text-decoration:none;">github.com/VanzTyl</a> for more code and experiments.
     </p>
   </div>
 
-  <!-- ─────────── EDUCATION ─────────── -->
+  <!-- ── EDUCATION ── -->
   <div class="tab-panel py-10" id="panel-education">
     <div class="mb-10">
       <div class="section-label">Background</div>
       <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Education Journey</h2>
-      <p style="font-size:14px;color:var(--muted);margin-top:6px;">From classroom to cloud — tracing the path that shaped my passion for AI.</p>
+      <p style="font-size:14px;color:var(--muted);margin-top:6px;">From web dev roots to AI specialization — tracing the path that shaped my passion for technology.</p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-      <!-- ── Zigzag Timeline ── -->
+      <!-- Zigzag Timeline -->
       <div class="lg:col-span-3">
         <div class="edu-timeline" id="eduTimeline">
           <div class="edu-timeline-line"></div>
 
-          <!-- ① College — from LEFT -->
+          <!-- ① CIIT — from LEFT -->
           <div class="edu-zig-item from-left">
             <div class="edu-zig-card">
-              <!-- School name -->
               <div class="edu-school-name">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Polytechnic University of the Philippines
+                CIIT Colleges of Art &amp; Technology — Quezon City
               </div>
-              <div class="edu-year-badge">2022 – Present</div>
+              <div class="edu-year-badge">2025 – Present</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
                 <div style="font-size:16px;font-weight:800;color:var(--text);">Bachelor of Science in Computer Science</div>
-                <span class="edu-status-green" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);white-space:nowrap;">In Progress</span>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(110,231,183,.08);border:1px solid rgba(110,231,183,.2);color:var(--accent);white-space:nowrap;">In Progress</span>
               </div>
-              <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;">Specialization: AI &amp; Cloud Computing</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Pursuing BSCS with a deep-dive into Artificial Intelligence and Cloud Computing. Coursework covers machine learning, neural networks, distributed systems, cloud architecture, and data engineering.</p>
+              <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:10px;">Specialization: Artificial Intelligence &amp; Cloud Computing</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Currently pursuing BSCS with a focus on Artificial Intelligence and Cloud Computing. Building expertise in machine learning, neural networks, distributed systems, and cloud architecture — transitioning my strong web dev foundation toward intelligent systems.</p>
               <div class="flex flex-wrap gap-2">
                 <span class="edu-chip-accent" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Machine Learning</span>
-                <span class="edu-chip-accent" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Deep Learning</span>
+                <span class="edu-chip-accent" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Cloud Computing</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">AI Systems</span>
                 <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Data Structures</span>
-                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Cloud Arch.</span>
                 <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Algorithms</span>
-                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">DB Systems</span>
               </div>
-
-              <!-- Achievements -->
               <div class="edu-achievements">
                 <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
                 <div class="edu-ach-tab-bar">
-                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'col-ach-0')">Dean's List</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'col-ach-1')">AI Hackathon</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'col-ach-2')">Research Paper</button>
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'ciit-ach-0')">Hackathon</button>
                 </div>
-                <div class="edu-ach-panel active" id="col-ach-0">
+                <div class="edu-ach-panel active" id="ciit-ach-0">
                   <div class="edu-ach-item">
                     <div class="edu-ach-emoji">🏆</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Dean's Lister — 2nd Year</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">S.Y. 2023–2024 · 1st Semester</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Earned Dean's Lister recognition with a GWA in the top 10% of the BSCS program for demonstrating outstanding academic performance.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="edu-ach-panel" id="col-ach-1">
-                  <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">💻</div>
-                    <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">2nd Place — PUP AI Hackathon 2024</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">March 2024 · 24-Hour Competition</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Built an AI-powered document summarization tool using RAG + LangChain in 24 hours. Placed 2nd among 32 competing teams.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="edu-ach-panel" id="col-ach-2">
-                  <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">📄</div>
-                    <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Co-Author — NLP Research Paper</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">November 2023 · Regional Academic Conference</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Co-authored a research paper on sentiment analysis for low-resource Filipino language datasets, submitted to a regional CS conference.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Hackathon Jam Participant</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">A.Y. 2025 – 2026 · CIIT College</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Participated in the CIIT Hackathon Jam, collaborating with peers to build and present an innovative tech solution under time constraints.</div>
                     </div>
                   </div>
                 </div>
@@ -1191,313 +943,259 @@
             <div class="edu-zig-node" style="border-color:rgba(110,231,183,.4);color:var(--accent);">🎓</div>
           </div>
 
-          <!-- ② Senior High — from RIGHT -->
+          <!-- ② TIP — from RIGHT -->
           <div class="edu-zig-item from-right">
             <div class="edu-zig-card">
-              <!-- School name -->
               <div class="edu-school-name">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Marikina Science High School
+                Technological Institute of the Philippines — Quezon City
               </div>
-              <div class="edu-year-badge">2020 – 2022</div>
+              <div class="edu-year-badge">2024 – 2025</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-                <div style="font-size:16px;font-weight:800;color:var(--text);">Senior High School</div>
-                <span class="edu-status-indigo" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;white-space:nowrap;">Completed</span>
+                <div style="font-size:16px;font-weight:800;color:var(--text);">BS in Data Science &amp; Analytics</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;white-space:nowrap;">Completed 1 Semester</span>
               </div>
-              <div style="font-size:13px;color:#a5b4fc;font-weight:600;margin-bottom:10px;">STEM Strand — Science, Technology, Engineering &amp; Mathematics</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Completed senior high school under the STEM strand, building a strong mathematical and scientific foundation — and my first taste of programming — that pointed me straight toward a CS degree.</p>
+              <div style="font-size:13px;color:#a5b4fc;font-weight:600;margin-bottom:10px;">Data Science &amp; Analytics Program</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Studied Data Science and Analytics at TIP for one semester, gaining foundational knowledge in statistical methods, data analysis, and applied mathematics — a stepping stone that deepened my interest in AI and led me to pursue a dedicated CS degree.</p>
               <div class="flex flex-wrap gap-2">
-                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Physics</span>
-                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Advanced Math</span>
-                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Computer Science Intro</span>
-                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Research Methods</span>
+                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Statistics</span>
+                <span class="edu-chip-indigo" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">Data Analysis</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Applied Mathematics</span>
               </div>
-
-              <!-- Achievements -->
               <div class="edu-achievements">
                 <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
                 <div class="edu-ach-tab-bar">
-                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'shs-ach-0')">With Honors</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'shs-ach-1')">Science Expo</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'shs-ach-2')">Math Contest</button>
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'tip-ach-0')">Innov8 Ideathon</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'tip-ach-1')">Quiz Bee</button>
                 </div>
-                <div class="edu-ach-panel active" id="shs-ach-0">
+                <div class="edu-ach-panel active" id="tip-ach-0">
                   <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">🎖️</div>
+                    <div class="edu-ach-emoji">💡</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Graduated With High Honors</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">June 2022 · Graduation Ceremony</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Graduated with High Honors from the STEM strand, maintaining a consistent GWA of 93+ across all semesters in Senior High School.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Finalist — Innov8 Ideathon by Microsoft Student Community</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2024 · TIP Manila</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Reached the finals of the Microsoft Student Community Innov8 Ideathon, pitching an innovative tech concept to a panel of judges at TIP Manila.</div>
                     </div>
                   </div>
                 </div>
-                <div class="edu-ach-panel" id="shs-ach-1">
+                <div class="edu-ach-panel" id="tip-ach-1">
                   <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">🔬</div>
+                    <div class="edu-ach-emoji">🧠</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Best Research — School Science Expo</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">February 2022 · Marikina Science High School</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Led a team that won Best Research Paper at the school Science Expo for a study on low-cost environmental sensors built with Arduino and Python.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="edu-ach-panel" id="shs-ach-2">
-                  <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">📐</div>
-                    <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">3rd Place — Regional Math Olympiad</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">October 2021 · Regional Competition</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Placed 3rd in the Division-level Math Olympiad, competing against STEM students across multiple schools in the National Capital Region.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">4th Place — Interdepartmental General Information Quiz Bee</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2024 · TIP Quezon City</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Placed 4th in the Interdepartmental General Information and Current Events Quiz Bee, and was a topnotcher in the elimination round open to all 1st Year Students.</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="edu-zig-node" style="border-color:rgba(99,102,241,.4);color:#a5b4fc;">📐</div>
+            <div class="edu-zig-node" style="border-color:rgba(99,102,241,.4);color:#a5b4fc;">📊</div>
           </div>
 
-          <!-- ③ Junior High — from LEFT -->
+          <!-- ③ STI SHS — from LEFT -->
           <div class="edu-zig-item from-left">
             <div class="edu-zig-card">
-              <!-- School name -->
               <div class="edu-school-name">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Kalayaan National High School
+                STI College Marikina — Senior High School
               </div>
-              <div class="edu-year-badge">2016 – 2020</div>
+              <div class="edu-year-badge">2022 – 2024</div>
               <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-                <div style="font-size:16px;font-weight:800;color:var(--text);">Junior High School</div>
-                <span class="edu-status-amber" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;white-space:nowrap;">Completed</span>
+                <div style="font-size:16px;font-weight:800;color:var(--text);">Senior High School</div>
+                <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);color:#fdba74;white-space:nowrap;">Completed</span>
               </div>
-              <div style="font-size:13px;color:#fdba74;font-weight:600;margin-bottom:10px;">Grades 7 – 10 · K-12 Program</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Developed logical thinking and problem-solving skills through mathematics, science, and early technology subjects. Discovered a strong inclination toward science and logical reasoning.</p>
-
-              <!-- Achievements -->
+              <div style="font-size:13px;color:#fdba74;font-weight:600;margin-bottom:10px;">TVL — IT · Mobile App and Web Development</div>
+              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">Completed Senior High School under the TVL-IT strand specializing in Mobile App and Web Development. Gained hands-on experience with HTML, CSS, JavaScript and foundational programming — where the passion for building digital products truly ignited.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="edu-chip-amber" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">HTML / CSS</span>
+                <span class="edu-chip-amber" style="font-size:11px;padding:2px 10px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">JavaScript</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Web Development</span>
+                <span class="edu-chip-muted" style="font-size:11px;padding:2px 10px;border-radius:4px;background:var(--surface2);color:var(--muted);">Mobile App Dev</span>
+              </div>
               <div class="edu-achievements">
                 <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
                 <div class="edu-ach-tab-bar">
-                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'jhs-ach-0')">Top 10 Ranking</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'jhs-ach-1')">School Paper</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'jhs-ach-2')">Tech Club</button>
+                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'sti-ach-0')">Codefest 2023</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'sti-ach-1')">Codefest 2024</button>
+                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'sti-ach-2')">SHS Expo</button>
                 </div>
-                <div class="edu-ach-panel active" id="jhs-ach-0">
+                <div class="edu-ach-panel active" id="sti-ach-0">
                   <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">⭐</div>
+                    <div class="edu-ach-emoji">💻</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Consistent Top 10 Student</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2016 – 2020 · All School Years</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Maintained a consistent top-10 ranking throughout all four years of Junior High School, with particular excellence in Mathematics and Integrated Science.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">Entrant — Codefest Tagisan ng Talino 2022–23</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2023 · STI College Marikina · Local Level</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Competed in the prestigious STI Codefest Tagisan ng Talino programming competition at the local level, representing STI College Marikina.</div>
                     </div>
                   </div>
                 </div>
-                <div class="edu-ach-panel" id="jhs-ach-1">
+                <div class="edu-ach-panel" id="sti-ach-1">
                   <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">📰</div>
+                    <div class="edu-ach-emoji">🥉</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Campus Journalist — School Paper</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2018 – 2020 · Kalayaan NHS Tribune</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Served as a junior correspondent for the school newspaper, covering technology and science features for the student body.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">2nd Runner Up — Codefest Tagisan ng Talino 2023–24</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2024 · STI College Marikina · Local Level</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Earned 2nd Runner Up at the STI Codefest Tagisan ng Talino 2023–24 (Local Level), demonstrating strong programming skills and technical problem-solving in a competitive environment.</div>
                     </div>
                   </div>
                 </div>
-                <div class="edu-ach-panel" id="jhs-ach-2">
+                <div class="edu-ach-panel" id="sti-ach-2">
                   <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">🤖</div>
+                    <div class="edu-ach-emoji">🏅</div>
                     <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Founder — Science &amp; Tech Club</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2019 – 2020 · Grade 10</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Co-founded the school's first Science and Technology club, organizing weekly workshops on basic electronics, robotics, and programming fundamentals.</div>
+                      <div style="font-size:13px;font-weight:700;color:var(--text);">SHS Expo — Best in Communication &amp; Best Use of Theme</div>
+                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2024 · STI SHS Expo · Section Award · Class President</div>
+                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Led the class as President to win two section awards at the SHS Expo: Best in Communication and Best Use of Expo Theme — recognized for excellent presentation, teamwork, and creative expression.</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="edu-zig-node" style="border-color:rgba(249,115,22,.4);color:#fdba74;">📚</div>
-          </div>
-
-          <!-- ④ Elementary — from RIGHT -->
-          <div class="edu-zig-item from-right">
-            <div class="edu-zig-card">
-              <!-- School name -->
-              <div class="edu-school-name">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Kalayaan Elementary School
-              </div>
-              <div class="edu-year-badge">2010 – 2016</div>
-              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-                <div style="font-size:16px;font-weight:800;color:var(--text);">Elementary School</div>
-                <span class="edu-status-pink" style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(236,72,153,.08);border:1px solid rgba(236,72,153,.2);color:#f9a8d4;white-space:nowrap;">Completed</span>
-              </div>
-              <div style="font-size:13px;color:#f9a8d4;font-weight:600;margin-bottom:10px;">Grades 1 – 6 · Foundation Years</div>
-              <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px;">The beginning of the journey. Built core literacy, numeracy, and a genuine curiosity for how things work — the spark that eventually ignited an AI obsession.</p>
-
-              <!-- Achievements -->
-              <div class="edu-achievements">
-                <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Achievements</div>
-                <div class="edu-ach-tab-bar">
-                  <button class="edu-ach-tab-btn active" onclick="switchEduAch(this,'elem-ach-0')">Best in Math</button>
-                  <button class="edu-ach-tab-btn" onclick="switchEduAch(this,'elem-ach-1')">Leadership</button>
-                </div>
-                <div class="edu-ach-panel active" id="elem-ach-0">
-                  <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">🌟</div>
-                    <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Best in Mathematics Award</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">June 2016 · Grade 6 Graduation</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Recognized at graduation for outstanding performance in Mathematics throughout all six years of elementary school — the earliest sign of an analytical mind.</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="edu-ach-panel" id="elem-ach-1">
-                  <div class="edu-ach-item">
-                    <div class="edu-ach-emoji">👑</div>
-                    <div>
-                      <div style="font-size:13px;font-weight:700;color:var(--text);">Class President — Grades 5 &amp; 6</div>
-                      <div style="font-size:11px;color:var(--muted);margin:2px 0;">2014 – 2016 · Student Government</div>
-                      <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">Elected Class President for two consecutive years, demonstrating early leadership, communication, and organizational skills among peers.</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="edu-zig-node" style="border-color:rgba(236,72,153,.4);color:#f9a8d4;">✏️</div>
+            <div class="edu-zig-node" style="border-color:rgba(249,115,22,.4);color:#fdba74;">🌐</div>
           </div>
 
         </div>
       </div>
 
-      <!-- ── Right Sidebar ── -->
+      <!-- Right Sidebar -->
       <div class="flex flex-col gap-4">
         <div class="stat-card">
           <div class="section-label">Academic Status</div>
-          <div style="font-size:28px;font-weight:800;color:var(--accent);">Year 3</div>
-          <div style="font-size:12px;color:var(--muted);">of 4-Year Program</div>
+          <div style="font-size:28px;font-weight:800;color:var(--accent);">Year 1</div>
+          <div style="font-size:12px;color:var(--muted);">of 4-Year BSCS Program · CIIT</div>
           <div style="margin-top:10px;">
-            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:var(--text);">Program Completion</span><span style="font-size:12px;color:var(--accent);">75%</span></div>
-            <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:12px;color:var(--text);">Program Completion</span><span style="font-size:12px;color:var(--accent);">~10%</span></div>
+            <div class="skill-bar-wrap"><div class="skill-bar" style="width:10%"></div></div>
           </div>
-          <div style="margin-top:10px;font-size:13px;color:var(--text);">Ian De Guzman · Age 20</div>
+          <div style="margin-top:10px;font-size:13px;color:var(--text);">Christian Leonard E. De Guzman</div>
           <div style="font-size:12px;color:var(--muted);margin-top:3px;">BSCS · AI &amp; Cloud Computing</div>
         </div>
 
         <div class="stat-card">
-          <div class="section-label">Research Interests</div>
+          <div class="section-label">Skill Interests</div>
           <div class="flex flex-col gap-3 mt-2">
             <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Machine Learning</span><span style="font-size:12px;color:var(--accent);">95%</span></div>
-              <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Deep Learning</span><span style="font-size:12px;color:var(--accent);">88%</span></div>
-              <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Data Science</span><span style="font-size:12px;color:var(--accent);">90%</span></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Web Development</span><span style="font-size:12px;color:var(--accent);">90%</span></div>
               <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
             </div>
             <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Cloud Computing</span><span style="font-size:12px;color:var(--accent);">75%</span></div>
-              <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Full Stack Dev</span><span style="font-size:12px;color:var(--accent);">80%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
             </div>
             <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">NLP / LLMs</span><span style="font-size:12px;color:var(--accent);">80%</span></div>
-              <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Mobile / Unity</span><span style="font-size:12px;color:var(--accent);">72%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">AI / Machine Learning</span><span style="font-size:12px;color:var(--accent);">60%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;color:var(--text);">Cloud Computing</span><span style="font-size:12px;color:var(--accent);">50%</span></div>
+              <div class="skill-bar-wrap"><div class="skill-bar" style="width:50%"></div></div>
             </div>
           </div>
         </div>
 
         <div class="stat-card">
-          <div class="section-label">Certifications</div>
-          <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Click any cert to verify credential</p>
-          <div class="flex flex-wrap gap-2">
-            <a href="https://coursera.org/verify/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              ML Specialization <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
-            </a>
-            <a href="https://aws.amazon.com/verification/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              AWS Cloud Practitioner <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
-            </a>
-            <a href="https://udemy.com/certificate/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Deep Learning PyTorch <span style="font-size:10px;color:var(--muted);margin-left:2px;">2024</span>
-            </a>
-            <a href="https://datacamp.com/certificate/placeholder" target="_blank" rel="noopener" class="cert-tag-btn">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Data Science Python <span style="font-size:10px;color:var(--muted);margin-left:2px;">2023</span>
-            </a>
+          <div class="section-label">Competitions</div>
+          <div class="flex flex-col gap-2 mt-1" style="font-size:12px;color:var(--muted);">
+            <div style="display:flex;gap:8px;"><span style="color:var(--accent);">🥉</span><span>2nd Runner Up · Codefest Tagisan ng Talino 2023–24</span></div>
+            <div style="display:flex;gap:8px;"><span style="color:var(--accent);">💡</span><span>Finalist · Innov8 Ideathon by Microsoft</span></div>
+            <div style="display:flex;gap:8px;"><span style="color:var(--accent);">🏅</span><span>SHS Expo Best in Communication</span></div>
+            <div style="display:flex;gap:8px;"><span style="color:var(--accent);">🏆</span><span>CIIT Hackathon Jam Participant</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ─────────── RESUME ─────────── -->
+  <!-- ── RESUME ── -->
   <div class="tab-panel py-10" id="panel-resume">
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       <div>
         <div class="section-label">Career</div>
         <h2 style="font-size:1.75rem;font-weight:800;color:var(--text);">Resume / CV</h2>
       </div>
-      <button class="cta-primary" onclick="showToast('PDF download will be added here!')">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF
-      </button>
+      <a href="Resume.pdf" download="Resume.pdf" class="cta-primary">
+        Download Resume
+      </a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Main resume col -->
+      <!-- Main col -->
       <div class="lg:col-span-2 flex flex-col gap-8">
 
         <!-- Summary -->
         <div class="stat-card" style="border-color:rgba(110,231,183,.2);">
-          <div class="resume-section-title">Profile Summary</div>
+          <div class="resume-section-title">Objective</div>
           <p style="font-size:14px;color:var(--muted);line-height:1.8;">
-            Motivated 3rd-year Computer Science student specializing in Artificial Intelligence & Cloud Computing.
-            Passionate about developing intelligent systems, data-driven applications, and scalable cloud solutions.
-            Seeking commissions, part-time, or full-time remote opportunities where I can apply and grow my skills in ML/AI.
+            TVL Senior High School graduate specializing in Mobile App and Web Development, with experience in front-end technologies (HTML, CSS, JavaScript) and foundational back-end development. Interested in developing efficient software solutions while expanding expertise in AI, machine learning, and full-stack development.
           </p>
         </div>
 
         <!-- Experience -->
         <div>
-          <div class="resume-section-title">Experience</div>
+          <div class="resume-section-title">Work Experience</div>
+
           <div class="resume-item">
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Freelance AI/ML Developer</div>
-            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Self-Employed · Remote</div>
-            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2023 – Present</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Operations Assistant</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">LIZA LYN PH — Family Business · E-Commerce</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2016 – 2020</div>
             <ul style="list-style:none;font-size:13px;color:var(--muted);line-height:1.8;">
-              <li>→ Built ML models for client data classification and prediction tasks</li>
-              <li>→ Developed NLP pipelines for text analytics projects</li>
-              <li>→ Deployed serverless APIs on AWS for model inference</li>
+              <li>→ Managed product listings and inventory on Shopee, Lazada, and Zalora</li>
+              <li>→ Handled customer chat support and order inquiries</li>
+              <li>→ Performed product photography and image editing using GIMP</li>
+              <li>→ Maintained product records and data tracking using Microsoft Excel</li>
+              <li>→ Gained hands-on experience with e-commerce operations and digital product management</li>
             </ul>
           </div>
+
           <div class="resume-item">
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Research & Development Intern</div>
-            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Academic Institution · On-site</div>
-            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2023</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Cybercafé Administrator</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Bunker Gaming — Family Business · IT Operations</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">2018 – 2020</div>
             <ul style="list-style:none;font-size:13px;color:var(--muted);line-height:1.8;">
-              <li>→ Assisted in data collection and preprocessing for research projects</li>
-              <li>→ Implemented baseline ML models for comparison studies</li>
-              <li>→ Contributed to academic paper writing and documentation</li>
+              <li>→ Managed daily operations of a cybercafé with multiple client computers</li>
+              <li>→ Maintained diskless workstations connected to a central server</li>
+              <li>→ Performed hardware and software troubleshooting</li>
+              <li>→ Assisted with basic LAN networking including network switches</li>
+              <li>→ Ensured client machines were functioning properly and supported customers</li>
             </ul>
           </div>
         </div>
 
-        <!-- Projects highlight -->
+        <!-- Projects -->
         <div>
           <div class="resume-section-title">Notable Projects</div>
           <div class="resume-item">
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Sentiment Analysis Engine</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Transformer-based NLP classifier · Python · PyTorch · HuggingFace</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Latik Delights</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Web-based POS &amp; Inventory Management System · HTML · CSS · JavaScript · PHP · MySQL · XAMPP</div>
           </div>
           <div class="resume-item">
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Serverless ML API</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px;">AWS Lambda deployment · Python · FastAPI · S3 Model Registry</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">NaviGuide</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:4px;">Android Aircraft Marshalling Trainer · Unity 3D · C# · MediaPipe · Android Studio</div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+          <div class="resume-section-title">Education</div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">BS in Computer Science — AI &amp; Cloud Computing</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">CIIT Colleges of Art &amp; Technology, Quezon City</div>
+            <div style="font-size:12px;color:var(--muted);">2025 – Present</div>
           </div>
           <div class="resume-item">
-            <div style="font-size:14px;font-weight:700;color:var(--text);">Stock Price Predictor</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:4px;">LSTM Time-Series Model · Python · TensorFlow · Keras</div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);">BS in Data Science &amp; Analytics</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">Technological Institute of the Philippines, Quezon City</div>
+            <div style="font-size:12px;color:var(--muted);">2024 – 2025 (Completed 1 Semester)</div>
+          </div>
+          <div class="resume-item">
+            <div style="font-size:14px;font-weight:700;color:var(--text);">Senior High School — TVL · IT · Mobile App &amp; Web Dev</div>
+            <div style="font-size:12px;color:var(--accent);margin:2px 0;">STI College Marikina</div>
+            <div style="font-size:12px;color:var(--muted);">2022 – 2024</div>
           </div>
         </div>
       </div>
@@ -1505,52 +1203,83 @@
       <!-- Sidebar -->
       <div class="flex flex-col gap-5">
 
-        <!-- Tech skills -->
+        <!-- Technical Skills -->
         <div class="stat-card">
           <div class="resume-section-title">Technical Skills</div>
           <div class="flex flex-col gap-3">
             <div>
               <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Languages</div>
               <div class="flex flex-wrap gap-1">
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Python</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">HTML</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">CSS</span>
                 <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">JavaScript</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">SQL</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Python</span>
                 <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Java</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">C++</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">C#</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">PHP</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Lua</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:var(--surface2);color:var(--text);">Node.js</span>
               </div>
             </div>
             <div>
-              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">AI / ML</div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Web Frameworks</div>
               <div class="flex flex-wrap gap-1">
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">PyTorch</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">TensorFlow</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Scikit-learn</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">HuggingFace</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">LangChain</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Next.js</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">React.js</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(110,231,183,.06);border:1px solid rgba(110,231,183,.12);color:var(--accent);">Express.js</span>
               </div>
             </div>
             <div>
-              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Cloud & Tools</div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Databases</div>
               <div class="flex flex-wrap gap-1">
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">AWS</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Docker</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">MySQL</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">SQLite</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">MongoDB</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12);color:#a5b4fc;">MS SQL Server</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;">Tools &amp; Version Control</div>
+              <div class="flex flex-wrap gap-1">
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">VS Code</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Visual Studio</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Android Studio</span>
                 <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">Git</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">FastAPI</span>
-                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">PostgreSQL</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">GitHub</span>
+                <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.12);color:#fdba74;">XAMPP</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Soft skills -->
+        <!-- Soft Skills -->
         <div class="stat-card">
           <div class="resume-section-title">Soft Skills</div>
           <div class="flex flex-col gap-2" style="font-size:13px;color:var(--muted);">
             <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Problem Solving</div>
             <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Fast Learner</div>
+            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Team Leadership</div>
             <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Detail-Oriented</div>
             <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Remote-Ready</div>
-            <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent);">→</span> Research-Driven</div>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="stat-card">
+          <div class="resume-section-title">Links</div>
+          <div class="flex flex-col gap-2">
+            <a href="https://github.com/VanzTyl" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              github.com/VanzTyl
+            </a>
+            <a href="https://www.linkedin.com/in/ian-de-guzman-2a9a452b4/" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn Profile
+            </a>
+            <a href="https://vanztyl-dev.netlify.app" target="_blank" rel="noopener" class="cert-tag-btn">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              vanztyl-dev.netlify.app
+            </a>
           </div>
         </div>
 
@@ -1564,46 +1293,34 @@
     </div>
   </div>
 
-  <!-- ─────────── CONTACT panel removed — now a modal ─────────── -->
-
 </section>
 
-<!-- ══════════════════════════ PROJECT MODAL ══════════════════════════ -->
+<!-- ══ PROJECT MODAL ══ -->
 <div class="modal-backdrop" id="projectModal" onclick="closeProjectModal(event)">
   <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Hero image area -->
     <div class="modal-img-hero" id="modalImgHero"></div>
     <div class="modal-inner">
-      <!-- Header row -->
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:16px;margin-bottom:4px;">
         <div>
           <div id="modalType" style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;"></div>
           <h2 id="modalTitle" style="font-size:22px;font-weight:800;color:var(--text);line-height:1.2;"></h2>
         </div>
         <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
-          <!-- Like button -->
           <button class="like-btn" id="likeBtn" onclick="toggleLike()">
             <span class="like-heart" id="likeHeart">♥</span>
             <span id="likeCount">0</span>
           </button>
-          <!-- Close -->
           <button onclick="closeProjectModal()" style="width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">×</button>
         </div>
       </div>
-
-      <!-- Modal tab bar -->
       <div class="modal-tab-bar">
         <button class="modal-tab-btn active" data-mtab="overview" onclick="switchModalTab(this,'overview')">Overview</button>
         <button class="modal-tab-btn" data-mtab="techstack" onclick="switchModalTab(this,'techstack')">Tech Stack</button>
       </div>
-
-      <!-- Overview panel -->
       <div class="modal-panel active" id="mpanel-overview">
         <p id="modalDesc" style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px;"></p>
         <div id="modalFeatures"></div>
       </div>
-
-      <!-- Tech Stack panel -->
       <div class="modal-panel" id="mpanel-techstack">
         <div id="modalStack"></div>
       </div>
@@ -1611,10 +1328,9 @@
   </div>
 </div>
 
-<!-- ══════════════════════════ CONTACT MODAL ══════════════════════════ -->
+<!-- ══ CONTACT MODAL ══ -->
 <div class="modal-backdrop" id="contactModal" onclick="closeContactModal(event)">
   <div class="contact-modal-box" onclick="event.stopPropagation()">
-    <!-- Header gradient bar -->
     <div style="background:linear-gradient(135deg,rgba(110,231,183,.08),rgba(99,102,241,.06));border-radius:20px 20px 0 0;padding:28px 28px 20px;border-bottom:1px solid var(--border);">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
         <div>
@@ -1629,7 +1345,6 @@
         <span class="avail-pill"><span class="status-dot" style="width:6px;height:6px;"></span>Full-Time Remote</span>
       </div>
     </div>
-    <!-- Form body -->
     <div style="padding:24px 28px 28px;">
       <div class="flex flex-col gap-4">
         <div class="grid grid-cols-2 gap-3">
@@ -1652,10 +1367,10 @@
         </div>
         <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;">
           <div style="display:flex;gap:10px;">
-            <a href="#" class="social-btn" title="GitHub" onclick="showToast('GitHub coming soon!')">
+            <a href="https://github.com/VanzTyl" target="_blank" rel="noopener" class="social-btn" title="GitHub">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
             </a>
-            <a href="#" class="social-btn" title="LinkedIn" onclick="showToast('LinkedIn coming soon!')">
+            <a href="https://www.linkedin.com/in/ian-de-guzman-2a9a452b4/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
           </div>
@@ -1669,11 +1384,11 @@
   </div>
 </div>
 
-<!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+<!-- ══ FOOTER ══ -->
 <footer style="border-top:1px solid var(--border);padding:24px 0;position:relative;z-index:1;">
   <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
     <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--accent);">VanzTyl_</div>
-    <div style="font-size:12px;color:var(--muted);">BSCS · AI & Cloud Computing · Philippines · © 2024</div>
+    <div style="font-size:12px;color:var(--muted);">BSCS · AI &amp; Cloud Computing · Marikina City, Philippines · © 2025</div>
     <div class="avail-pill">
       <span class="status-dot" style="width:6px;height:6px;"></span>
       Open to Work
@@ -1682,60 +1397,53 @@
 </footer>
 
 <script>
-  // ══════════════════════ PROJECT DATA ══════════════════════
+  // ══ PROJECT DATA ══
   const projects = [
     {
-      id: 0, title: 'Sentiment Analysis Engine', type: 'AI / NLP', emoji: '🧠',
-      bg: 'linear-gradient(135deg,#0a1a14,#0d2420)',
-      desc: 'A transformer-based NLP model for real-time sentiment classification on social media text. Trained on a large corpus of labeled tweets and product reviews, the model achieves 93% accuracy on held-out test data. Designed for low-latency inference and integrates with streaming pipelines for live social monitoring.',
-      features: ['Real-time inference pipeline','Multi-class sentiment classification (Positive / Neutral / Negative)','REST API endpoint with rate limiting','Batch processing support for large datasets','Confidence score outputs with attention visualization'],
-      stack: [{cat:'ML Framework',items:['PyTorch','HuggingFace Transformers','BERT (fine-tuned)']},{cat:'Data Processing',items:['Python','Pandas','NumPy','NLTK']},{cat:'Deployment',items:['FastAPI','Docker','ONNX Runtime']}]
+      id: 0, title: 'Latik Delights', type: 'Web Dev · PHP · MySQL', emoji: '🍡',
+      bg: 'linear-gradient(135deg,#0a1208,#0d1f0a)',
+      desc: 'A web-based Point-of-Sale (POS) and inventory management system developed for a local delicacy business. Built with a PHP/MySQL backend and a JavaScript/HTML/CSS frontend, it handles sales recording, product management, and inventory monitoring — fully deployable locally via XAMPP.',
+      features: [
+        'Sales transaction recording and receipt generation',
+        'Product management — add, edit, and delete items',
+        'Real-time inventory monitoring and low-stock tracking',
+        'XAMPP local deployment with PHP and MySQL integration',
+        'Responsive UI built with HTML, CSS, and JavaScript'
+      ],
+      stack: [
+        {cat:'Frontend', items:['HTML','CSS','JavaScript']},
+        {cat:'Backend', items:['PHP','MySQL','XAMPP']},
+        {cat:'Dev Tools', items:['Visual Studio Code','Git','GitHub']}
+      ]
     },
     {
-      id: 1, title: 'Predictive Analytics Dashboard', type: 'Data Science', emoji: '📊',
-      bg: 'linear-gradient(135deg,#0a0f1e,#0d1230)',
-      desc: 'An interactive web dashboard that visualizes machine learning model predictions and training metrics in real-time. Supports uploading datasets, selecting features, training baseline models, and monitoring performance — all from a browser-based UI without any coding required.',
-      features: ['Auto-ML baseline model selection','Real-time training metrics visualization','Interactive feature importance charts','CSV/Excel dataset upload support','Exportable prediction reports'],
-      stack: [{cat:'Frontend & Dashboard',items:['Streamlit','Plotly','Altair']},{cat:'ML & Data',items:['Python','Pandas','Scikit-learn','XGBoost']},{cat:'Infrastructure',items:['SQLite (local cache)','Docker']}]
-    },
-    {
-      id: 2, title: 'Serverless ML API', type: 'Cloud · MLOps', emoji: '☁️',
-      bg: 'linear-gradient(135deg,#1a0d00,#241008)',
-      desc: 'A fully serverless machine learning inference platform deployed on AWS Lambda. Handles auto-scaling from 0 to thousands of concurrent requests. Models are versioned in S3 and swapped live via Lambda layer updates — no downtime required.',
-      features: ['Zero cold-start optimization via Lambda SnapStart','Model versioning & blue/green switching via S3','Auto-scaling from 0 to 10k+ concurrent requests','CloudWatch logging & alerting','Cost-effective: pay only per inference call'],
-      stack: [{cat:'Cloud',items:['AWS Lambda','AWS S3','AWS API Gateway','CloudWatch']},{cat:'Backend',items:['Python','FastAPI','Mangum (ASGI adapter)']},{cat:'ML Runtime',items:['Scikit-learn','ONNX Runtime','Joblib']}]
-    },
-    {
-      id: 3, title: 'Conversational Chatbot', type: 'AI · LLM', emoji: '💬',
-      bg: 'linear-gradient(135deg,#18071a,#200d24)',
-      desc: 'A domain-specific conversational AI built with Retrieval-Augmented Generation (RAG). The system indexes custom documents into a vector database and retrieves semantically relevant context before generating responses — dramatically reducing hallucinations compared to vanilla LLM usage.',
-      features: ['RAG pipeline with FAISS vector retrieval','Custom document ingestion (PDF, DOCX, TXT)','Conversation memory with sliding context window','Streaming token output for low perceived latency','Prompt injection defense & content filtering'],
-      stack: [{cat:'LLM & Retrieval',items:['OpenAI GPT-4','LangChain','FAISS','HuggingFace Embeddings']},{cat:'Backend',items:['Python','FastAPI','WebSockets']},{cat:'Storage',items:['PostgreSQL (chat history)','S3 (document store)']}]
-    },
-    {
-      id: 4, title: 'Data Viz Portfolio App', type: 'Web Dev · Data', emoji: '📈',
-      bg: 'linear-gradient(135deg,#051a18,#072420)',
-      desc: 'A full-stack web application that lets users upload CSV/Excel datasets and instantly generate interactive, shareable visualizations. The backend auto-detects column types and suggests appropriate chart types. Users can export dashboards as static HTML or live shareable links.',
-      features: ['Drag-and-drop CSV/Excel upload','Auto column type detection (numeric, categorical, temporal)','Suggested chart types per data shape','Interactive filters and drill-down','Export to shareable HTML snapshot'],
-      stack: [{cat:'Frontend',items:['Vanilla JS','D3.js','HTML/CSS','Tailwind CSS']},{cat:'Backend',items:['Node.js','Express','Multer (file upload)']},{cat:'Data Processing',items:['Python microservice','Pandas','NumPy']}]
-    },
-    {
-      id: 5, title: 'Stock Price Predictor', type: 'Machine Learning · Finance', emoji: '📉',
-      bg: 'linear-gradient(135deg,#131100,#1e1900)',
-      desc: 'An LSTM-based time-series model for short-term stock price prediction, trained on 10+ years of historical OHLCV data. Includes a full backtesting pipeline to evaluate strategy performance across market regimes — bull, bear, and sideways.',
-      features: ['LSTM with attention mechanism for sequence modeling','Technical indicator feature engineering (RSI, MACD, Bollinger Bands)','Walk-forward backtesting pipeline','Sharpe ratio & max drawdown evaluation metrics','Real-time data feed via Yahoo Finance API'],
-      stack: [{cat:'Deep Learning',items:['Python','TensorFlow','Keras','NumPy']},{cat:'Data & Features',items:['Pandas','yfinance','TA-Lib','Scikit-learn (preprocessing)']},{cat:'Visualization',items:['Matplotlib','Plotly','Jupyter Notebook']}]
+      id: 1, title: 'NaviGuide', type: 'Mobile · AI / ML · Unity', emoji: '✈️',
+      bg: 'linear-gradient(135deg,#0a0f1a,#0d1428)',
+      desc: 'An Android-based training application built with Unity 3D and C# to help aeronautics students practice aircraft marshalling procedures. The app integrates MediaPipe machine learning models for real-time gesture recognition, simulating real-world aircraft marshalling signals in an interactive 3D environment.',
+      features: [
+        'Real-time gesture recognition powered by MediaPipe ML models',
+        '3D Unity environment simulating aircraft marshalling scenarios',
+        'Procedure validation and scoring system for trainees',
+        'Deployed as an Android APK via Android Studio',
+        'Interactive signal feedback for accurate training'
+      ],
+      stack: [
+        {cat:'Engine & Language', items:['Unity 3D','C#']},
+        {cat:'AI / ML', items:['MediaPipe (Gesture Recognition)']},
+        {cat:'Platform', items:['Android','Android Studio']}
+      ]
     }
   ];
 
-  const likeCounts = [12,8,15,21,6,9];
-  const liked = [false,false,false,false,false,false];
+  const likeCounts = [7, 12];
+  const liked = [false, false];
   let currentProjectId = 0;
 
   // ── Project Modal ──
   function openProjectModal(id) {
     currentProjectId = id;
     const p = projects[id];
+    if (!p) return;
     document.getElementById('modalImgHero').innerHTML = `<div style="font-size:64px;position:relative;z-index:1;">${p.emoji}</div>`;
     document.getElementById('modalImgHero').style.background = p.bg;
     document.getElementById('modalType').textContent = p.type;
@@ -1799,7 +1507,7 @@
     document.body.style.overflow='';
   }
 
-  // ══════════════════════ PGR TAB SYSTEM ══════════════════════
+  // ══ TAB SYSTEM ══
   function initTabIndicator() {
     const bar=document.getElementById('tabBar');
     const indicator=document.getElementById('tabIndicator');
@@ -1817,12 +1525,10 @@
     indicator.style.width=btn.offsetWidth+'px';
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     document.getElementById('panel-'+tabId).classList.add('active');
-    // sync nav tabs
     document.querySelectorAll('.nav-tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.navTab===tabId));
     if(tabId==='education') setTimeout(triggerEduAnimation,100);
   }
 
-  // ── Nav tab click ──
   function navTabClick(btn,tabId) {
     scrollToTab(tabId);
     document.querySelectorAll('.nav-tab-btn').forEach(b=>b.classList.remove('active'));
@@ -1841,12 +1547,11 @@
     document.getElementById('hero').scrollIntoView({behavior:'smooth'});
   }
 
-  // ── Nav observer: tabs in view → show scroll-up; out of view → show nav tabs ──
   function initNavObserver() {
     const tabsSection=document.getElementById('main-tabs');
     const navTabGroup=document.getElementById('navTabGroup');
     const navScrollUp=document.getElementById('navScrollUp');
-    const observer=new IntersectionObserver((entries)=>{
+    new IntersectionObserver((entries)=>{
       if(entries[0].isIntersecting){
         navTabGroup.classList.remove('visible'); navTabGroup.classList.add('hidden');
         navScrollUp.classList.remove('hidden'); navScrollUp.classList.add('visible');
@@ -1854,11 +1559,10 @@
         navScrollUp.classList.remove('visible'); navScrollUp.classList.add('hidden');
         navTabGroup.classList.remove('hidden'); navTabGroup.classList.add('visible');
       }
-    },{threshold:0.05});
-    observer.observe(tabsSection);
+    },{threshold:0.05}).observe(tabsSection);
   }
 
-  // ══════════════════════ TAG FILTER ══════════════════════
+  // ══ TAG FILTER ══
   document.getElementById('tagFilters').addEventListener('click',function(e){
     const btn=e.target.closest('.filter-tag');
     if(!btn) return;
@@ -1866,13 +1570,14 @@
     btn.classList.add('active');
     const filter=btn.dataset.filter;
     document.querySelectorAll('#projectGrid .project-card').forEach(card=>{
-      const tags=(card.dataset.tags||'').split(',');
+      if(!card.dataset.tags) return;
+      const tags=card.dataset.tags.split(',');
       if(filter==='all'||tags.includes(filter)){card.style.display='';card.style.animation='fadeSlideIn .3s cubic-bezier(.4,0,.2,1)';}
       else{card.style.display='none';}
     });
   });
 
-  // ══════════════════════ CONTACT SUBMIT ══════════════════════
+  // ══ CONTACT SUBMIT ══
   function handleContactSubmit() {
     const name=(document.getElementById('cmName')||{value:''}).value.trim();
     const email=(document.getElementById('cmEmail')||{value:''}).value.trim();
@@ -1880,13 +1585,13 @@
     const message=(document.getElementById('cmMessage')||{value:''}).value.trim();
     if(!name||!email||!message){showToast('⚠ Please fill in all required fields.',true);return;}
     if(!email.includes('@')){showToast('⚠ Please enter a valid email address.',true);return;}
-    const mailto=`mailto:vanztyl@email.com?subject=${encodeURIComponent(subject||'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
+    const mailto=`mailto:dg.christianleonard@gmail.com?subject=${encodeURIComponent(subject||'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${name} <${email}>\n\n${message}`)}`;
     window.location.href=mailto;
     showToast('Opening your mail client...');
     setTimeout(()=>{document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';},500);
   }
 
-  // ══════════════════════ EDU ZIGZAG ANIMATION ══════════════════════
+  // ══ EDU ANIMATION ══
   function triggerEduAnimation() {
     document.querySelectorAll('.edu-zig-item').forEach((item,i)=>{
       setTimeout(()=>{
@@ -1904,7 +1609,7 @@
     },{threshold:0.05}).observe(timeline);
   }
 
-  // ══════════════════════ TOAST ══════════════════════
+  // ══ TOAST ══
   let toastTimer;
   function showToast(msg,isError) {
     clearTimeout(toastTimer);
@@ -1915,7 +1620,6 @@
     toastTimer=setTimeout(()=>toast.classList.remove('show'),3000);
   }
 
-  // ── ESC key closes modals ──
   document.addEventListener('keydown',(e)=>{
     if(e.key==='Escape'){
       document.getElementById('projectModal').classList.remove('open');
@@ -1924,36 +1628,35 @@
     }
   });
 
-  // ══════════════════════ THEME TOGGLE ══════════════════════
+  // ══ THEME ══
   function toggleTheme() {
-    const body = document.body;
+    const body=document.body;
     body.classList.toggle('light');
-    const isLight = body.classList.contains('light');
-    document.getElementById('iconMoon').style.display = isLight ? 'none' : '';
-    document.getElementById('iconSun').style.display  = isLight ? '' : 'none';
-    localStorage.setItem('vt-theme', isLight ? 'light' : 'dark');
+    const isLight=body.classList.contains('light');
+    document.getElementById('iconMoon').style.display=isLight?'none':'';
+    document.getElementById('iconSun').style.display=isLight?'':'none';
+    localStorage.setItem('vt-theme',isLight?'light':'dark');
   }
-  // Restore saved preference immediately
-  (function() {
-    if (localStorage.getItem('vt-theme') === 'light') {
+  (function(){
+    if(localStorage.getItem('vt-theme')==='light'){
       document.body.classList.add('light');
-      const m = document.getElementById('iconMoon');
-      const s = document.getElementById('iconSun');
-      if (m) m.style.display = 'none';
-      if (s) s.style.display = '';
+      const m=document.getElementById('iconMoon');
+      const s=document.getElementById('iconSun');
+      if(m)m.style.display='none';
+      if(s)s.style.display='';
     }
   })();
 
-  // ══════════════════════ EDU ACHIEVEMENT TABS ══════════════════════
-  function switchEduAch(btn, panelId) {
-    const container = btn.closest('.edu-achievements');
-    container.querySelectorAll('.edu-ach-tab-btn').forEach(b => b.classList.remove('active'));
+  // ══ EDU ACH TABS ══
+  function switchEduAch(btn,panelId) {
+    const container=btn.closest('.edu-achievements');
+    container.querySelectorAll('.edu-ach-tab-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    container.querySelectorAll('.edu-ach-panel').forEach(p => p.classList.remove('active'));
+    container.querySelectorAll('.edu-ach-panel').forEach(p=>p.classList.remove('active'));
     document.getElementById(panelId).classList.add('active');
   }
 
-  // ══════════════════════ INIT ══════════════════════
+  // ══ INIT ══
   window.addEventListener('load',()=>{
     initTabIndicator();
     initNavObserver();
